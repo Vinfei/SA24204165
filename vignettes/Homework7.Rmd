@@ -1,0 +1,151 @@
+---
+title: "Homework7"
+author: "吴鹏飞"
+date: "2023-12-09"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Homework7}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+##    Exercises 11.3
+```{r}
+# 该和收敛于E||a - Z|| - E||Z||，其中Z ~ Nd(0, Id)。
+# 对于较大的||a||，该和难以计算，但当||a||非常大时，E||a - Z|| ≈ ||a||.
+# 将和的第k项记为(-1)^k * a_k * c_k，
+# 其中a_k = ||a||^(2(k+1))，c_k = 1 / (k! * 2^k * (2k + 1) * (2k + 2)) * 
+# (Γ((d+1)/2) * Γ(k + 3/2) / Γ(k + d/2 + 1))。
+# 使用对数来避免溢出。
+
+
+# （a）定义计算第k项的函数
+compute_kth_term <- function(a, d, k) {
+  # 如果k小于0，返回0
+  if (k < 0) {
+    return(0)
+  }
+  # 计算向量a的欧几里得范数的平方
+  aa <- sum(a^2)
+  # 计算ak的值，ak = ||a||^(2(k+1))
+  ak <- aa^((k + 1) / 2)
+  # 计算ck的值，使用Gamma函数和阶乘来避免溢出
+  ck <- (1 / (factorial(k) * 2^k * (2 * k + 1) * (2 * k + 2))) *
+        (gamma((d + 1) / 2) * gamma(k + 3 / 2) / gamma(k + d / 2 + 1))
+  # 计算第k项的值，(-1)^k * ak * ck
+  term <- ((-1)^k) * ak * ck
+  return(term)
+}
+
+# （b）定义计算总和的函数
+compute_sum <- function(a, K = 60) {
+  # 如果K小于0，返回0
+  if (K < 0) {
+    return(0)
+  }
+  # 获取向量a的长度，即d值
+  d <- length(a)
+  # 初始化总和为0
+  sum <- 0
+  # 循环计算每一项并累加到总和中
+  for (k in 0:K) {
+    term <- compute_kth_term(a, d, k)
+    sum <- sum + term
+  }
+  # 返回总和
+  return(sum)
+}
+
+# （c）计算当a = (1, 2)^T时的总和
+a <- c(1, 2)
+sum_result <- compute_sum(a)
+print(sum_result)
+```
+
+##    Exercises 11.5
+```{r}
+# 定义伽马函数
+gamma_func <- function(x) {
+  gamma(x)
+}
+
+# 定义积分函数
+integrate_func <- function(a, k) {
+  ck <- sqrt(a^2 * k / (k + 1 - a^2))
+  integrand <- function(u) {
+    (1 + u^2 / k)^(-(k + 1) / 2)
+  }
+  result <- integrate(integrand, lower = 0, upper = ck)$value
+  return(result)
+}
+
+# 主函数来解决方程
+solve_equation <- function(a, k) {
+  # 计算左侧的积分
+  left_integral <- integrate_func(a, k - 1)
+  
+  # 计算右侧的积分
+  right_integral <- integrate_func(a, k)
+  
+  # 计算左侧和右侧的系数
+  left_coefficient <- (2 * gamma_func(k / 2)) / (sqrt(pi * (k - 1)) * gamma_func((k - 1) / 2))
+  right_coefficient <- (2 * gamma_func((k + 1) / 2)) / (sqrt(pi * k) * gamma_func(k / 2))
+  
+  # 比较两侧的值
+  left_value <- left_coefficient * left_integral
+  right_value <- right_coefficient * right_integral
+  
+  # 检查是否相等
+  if (abs(left_value - right_value) < 1e-3) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+# 测试函数
+solve_equation(a = 1, k = 100)
+
+```
+
+##    Exercises
+```{r}
+# 观察到的数据
+Y <- c(0.54, 0.48, 0.33, 0.43, 1.00, 1.00, 0.91, 1.00, 0.21, 0.85)
+tau <- 1
+
+# 初始化参数
+lambda <- 1 / mean(Y)  # 初始估计
+n <- length(Y)
+log_likelihood <- function(lambda, Y, tau) {
+  sum(log(lambda * (1 - exp(-Y / lambda)))) - n * log(lambda)
+}
+
+# EM 算法
+em_algorithm <- function(Y, tau, lambda, max_iter = 100, tol = 1e-6) {
+  for (i in 1:max_iter) {
+    # E-step
+    Z <- ifelse(Y <= tau, Y, tau)  # 估计未观察到的 T_i
+    p <- exp(-Z / lambda)          # 计算 P(T_i > tau)
+    
+    # M-step
+    lambda_new <- (sum(Y - p * tau) + sum(p * tau)) / sum(1 - p)
+    
+    # 检查收敛
+    if (abs(lambda_new - lambda) < tol) {
+      break
+    }
+    lambda <- lambda_new
+  }
+  return(list(lambda = lambda, iterations = i))
+}
+
+# 运行 EM 算法
+em_result <- em_algorithm(Y, tau, lambda)
+print(em_result)
+
+# 计算 MLE
+mle_lambda <- 1 / mean(Y[Y <= tau])
+print(mle_lambda)
+```
+

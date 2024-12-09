@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Homework6</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework6</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="exercises-9.3" class="section level2">
+<h2>Exercises 9.3</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 设置随机种子</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># 定义标准柯西分布的密度函数</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>cauchy_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (pi <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Metropolis-Hastings采样器</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>mh_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(num_samples, proposal_sd) {</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="co"># 初始化参数</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  current_value <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, proposal_sd)  <span class="co"># 初始值，从正态分布中采样</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  sample_chain <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_samples)  <span class="co"># 存储采样结果的向量</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="co"># 采样过程</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>num_samples) {</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    <span class="co"># 提议分布（正态分布）</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    proposed_value <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, current_value, proposal_sd)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    <span class="co"># 计算接受概率</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    acceptance_ratio <span class="ot">&lt;-</span> <span class="fu">cauchy_pdf</span>(proposed_value) <span class="sc">*</span> <span class="fu">dnorm</span>(current_value, proposed_value, proposal_sd) <span class="sc">/</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>                         (<span class="fu">cauchy_pdf</span>(current_value) <span class="sc">*</span> <span class="fu">dnorm</span>(proposed_value, current_value, proposal_sd))</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    </span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>    <span class="co"># 接受或拒绝提议</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>    uniform_random <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>    <span class="cf">if</span> (uniform_random <span class="sc">&lt;=</span> acceptance_ratio) {</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>      current_value <span class="ot">&lt;-</span> proposed_value</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    }</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>    </span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>    <span class="co"># 存储结果</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>    sample_chain[i] <span class="ot">&lt;-</span> current_value</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>  }</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>  </span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  <span class="fu">return</span>(sample_chain)</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>}</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>num_samples <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>proposal_sd <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>burn_in <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="co"># 生成样本</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>sample_chain <span class="ot">&lt;-</span> <span class="fu">mh_sampler</span>(num_samples, proposal_sd)</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co"># 计算分位数</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>decile_probs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>post_burn_in_samples <span class="ot">&lt;-</span> sample_chain[(burn_in <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>num_samples]</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>sample_deciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, decile_probs)</span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>cauchy_deciles <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(decile_probs)</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="co"># 打印分位数</span></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">rbind</span>(sample_deciles, cauchy_deciles), <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##                   10%    20%    30%    40%   50%   60%   70%   80%   90%
+## sample_deciles -4.076 -1.614 -0.754 -0.297 0.063 0.407 0.852 1.663 4.481
+## cauchy_deciles -3.078 -1.376 -0.727 -0.325 0.000 0.325 0.727 1.376 3.078</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># 计算上尾分位数</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>upper_tail_probs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>sample_upper_tail <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, upper_tail_probs)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>cauchy_upper_tail <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(upper_tail_probs)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># 打印上尾分位数</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">rbind</span>(sample_upper_tail, cauchy_upper_tail), <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##                      95%    96%    97%    98%    99%   100%
+## sample_upper_tail 13.269 16.633 19.685 23.677 30.353 43.948
+## cauchy_upper_tail  6.314  7.916 10.579 15.895 31.821    Inf</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 绘制QQ图</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>all_decile_probs <span class="ot">&lt;-</span> <span class="fu">ppoints</span>(<span class="dv">100</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>all_sample_deciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, all_decile_probs)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>all_cauchy_deciles <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(all_decile_probs)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">qqplot</span>(all_cauchy_deciles, all_sample_deciles, <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="exercises-9.3gelman-rubin-method" class="section level2">
+<h2>Exercises 9.3（Gelman-Rubin method）</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># 加载包</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># 设置随机种子</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co"># 定义标准柯西分布的密度函数</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>cauchy_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (pi <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>}</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># Metropolis-Hastings采样器</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>mh_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(num_samples, proposal_sd) {</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>  current_value <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, proposal_sd)  <span class="co"># 初始化参数</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>  sample_chain <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_samples)  <span class="co"># 存储采样结果</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>  </span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>num_samples) {</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>    proposed_value <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, current_value, proposal_sd)  <span class="co"># 提议分布</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a>    </span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a>    <span class="co"># 计算接受概率</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>    acceptance_ratio <span class="ot">&lt;-</span> <span class="fu">cauchy_pdf</span>(proposed_value) <span class="sc">*</span> <span class="fu">dnorm</span>(current_value, proposed_value, proposal_sd) <span class="sc">/</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a>                         (<span class="fu">cauchy_pdf</span>(current_value) <span class="sc">*</span> <span class="fu">dnorm</span>(proposed_value, current_value, proposal_sd))</span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a>    </span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a>    <span class="co"># 接受或拒绝提议</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>    uniform_random <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a>    <span class="cf">if</span> (uniform_random <span class="sc">&lt;=</span> acceptance_ratio) {</span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a>      current_value <span class="ot">&lt;-</span> proposed_value</span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a>    }</span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a>    </span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a>    sample_chain[i] <span class="ot">&lt;-</span> current_value  <span class="co"># 存储结果</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a>  }</span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a>  </span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a>  <span class="fu">return</span>(sample_chain)</span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a>}</span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a>num_samples <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a>proposal_sd <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a>burn_in <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a>num_chains <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># 链的数量</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="co"># 初始化多个链</span></span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a>chains <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_chains) {</span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a>  chains[[k]] <span class="ot">&lt;-</span> <span class="fu">mh_sampler</span>(num_samples, proposal_sd)</span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a>}</span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="co"># 计算Gelman-Rubin诊断统计量</span></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a>mcmc_chains <span class="ot">&lt;-</span> <span class="fu">lapply</span>(chains, <span class="cf">function</span>(chain) <span class="fu">mcmc</span>(chain[(burn_in <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>num_samples]))  <span class="co"># 丢弃burn-in</span></span>
+<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a>gelman_results <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(<span class="fu">mcmc.list</span>(mcmc_chains), <span class="at">autoburnin =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" tabindex="-1"></a><span class="co"># 打印Gelman-Rubin结果</span></span>
+<span id="cb6-53"><a href="#cb6-53" tabindex="-1"></a><span class="fu">print</span>(gelman_results)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]       1.05       1.06</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># 检查收敛性，直到所有R_hat &lt; 1.2</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">max</span>(gelman_results<span class="sc">$</span>psrf[,<span class="dv">1</span>]) <span class="sc">&gt;=</span> <span class="fl">1.2</span>) {</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="co"># 生成新的链并更新</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  new_chain <span class="ot">&lt;-</span> <span class="fu">mh_sampler</span>(num_samples, proposal_sd)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  chains <span class="ot">&lt;-</span> <span class="fu">append</span>(chains, <span class="fu">list</span>(new_chain))</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="co"># 更新Gelman-Rubin统计量</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  mcmc_chains <span class="ot">&lt;-</span> <span class="fu">lapply</span>(chains, <span class="cf">function</span>(chain) <span class="fu">mcmc</span>(chain[(burn_in <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>num_samples]))</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  gelman_results <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(<span class="fu">mcmc.list</span>(mcmc_chains), <span class="at">autoburnin =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="fu">print</span>(gelman_results)</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># 计算分位数</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>post_burn_in_samples <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(chains, <span class="cf">function</span>(chain) chain[(burn_in <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>num_samples]))</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>decile_probs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>sample_deciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, decile_probs)</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>cauchy_deciles <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(decile_probs)</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co"># 打印分位数</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">rbind</span>(sample_deciles, cauchy_deciles), <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##                   10%    20%    30%    40%   50%   60%   70%   80%   90%
+## sample_deciles -3.404 -1.426 -0.740 -0.330 0.008 0.353 0.788 1.433 3.374
+## cauchy_deciles -3.078 -1.376 -0.727 -0.325 0.000 0.325 0.727 1.376 3.078</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># 计算上尾分位数</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>upper_tail_probs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>sample_upper_tail <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, upper_tail_probs)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>cauchy_upper_tail <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(upper_tail_probs)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># 打印上尾分位数</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">rbind</span>(sample_upper_tail, cauchy_upper_tail), <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##                     95%   96%    97%    98%    99%   100%
+## sample_upper_tail 7.357 9.455 12.715 17.928 27.451 65.163
+## cauchy_upper_tail 6.314 7.916 10.579 15.895 31.821    Inf</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># 绘制QQ图</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>all_decile_probs <span class="ot">&lt;-</span> <span class="fu">ppoints</span>(<span class="dv">100</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>all_sample_deciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(post_burn_in_samples, all_decile_probs)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>all_cauchy_deciles <span class="ot">&lt;-</span> <span class="fu">qcauchy</span>(all_decile_probs)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">qqplot</span>(all_cauchy_deciles, all_sample_deciles, <span class="at">cex =</span> <span class="fl">0.5</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="exercises-9.8" class="section level2">
+<h2>Exercises 9.8</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 总迭代次数</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>burn <span class="ot">&lt;-</span> <span class="dv">2000</span> </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span> </span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># 总的试验次数</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co"># 初始化</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)  <span class="co"># 随机初始化x</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>y[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x[<span class="dv">1</span>] <span class="sc">+</span> b)  <span class="co"># 随机初始化y</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co"># 吉布斯采样</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>N) {</span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>  x[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y[i <span class="sc">-</span> <span class="dv">1</span>])  <span class="co"># 从条件分布中采样x</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>  y[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x[i] <span class="sc">+</span> a, n <span class="sc">-</span> x[i] <span class="sc">+</span> b)  <span class="co"># 从条件分布中采样y</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>}</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>xb <span class="ot">&lt;-</span> x[(burn <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>N]</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co"># 计算边际分布的估计值</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">table</span>(xb) <span class="sc">/</span> <span class="fu">length</span>(xb)</span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co"># 计算真实的边际概率质量函数</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n</span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">choose</span>(n, i) <span class="sc">*</span> <span class="fu">beta</span>(i <span class="sc">+</span> a, n <span class="sc">-</span> i <span class="sc">+</span> b) <span class="sc">/</span> <span class="fu">beta</span>(a, b)</span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="co"># 绘制结果</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="fu">barplot</span>(fx, <span class="at">space =</span> <span class="dv">0</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>), <span class="at">xlab =</span> <span class="st">&quot;n&quot;</span>, <span class="at">main =</span> <span class="st">&quot;p(n)=bar; est=points&quot;</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">0</span><span class="sc">:</span>n <span class="sc">+</span> <span class="fl">0.5</span>, f1)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="exercises-9.8gelman-rubin-method" class="section level2">
+<h2>Exercises 9.8（Gelman-Rubin method）</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># 加载包</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>    </span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>burn <span class="ot">&lt;-</span> <span class="dv">2000</span>  </span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>     </span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>num_chains <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># 链的数量</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co"># 初始化多个链</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>chains <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_chains) {</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>  x[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)  <span class="co"># 每条链独立随机初始化x</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>  y[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x[<span class="dv">1</span>] <span class="sc">+</span> a, n <span class="sc">-</span> x[<span class="dv">1</span>] <span class="sc">+</span> b)  <span class="co"># 随机初始化y</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>  </span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>  <span class="co"># 吉布斯采样</span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>N) {</span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a>    x[i] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>    y[i] <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x[i] <span class="sc">+</span> a, n <span class="sc">-</span> x[i] <span class="sc">+</span> b)</span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a>  }</span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>  </span>
+<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a>  <span class="co"># 将结果存入链列表</span></span>
+<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a>  chains[[k]] <span class="ot">&lt;-</span> x[(burn <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>N]</span>
+<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>}</span>
+<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a><span class="co"># 计算Gelman-Rubin诊断统计量</span></span>
+<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a><span class="co"># 将每条链转换为mcmc对象</span></span>
+<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a>mcmc_chains <span class="ot">&lt;-</span> <span class="fu">lapply</span>(chains, mcmc)</span>
+<span id="cb14-33"><a href="#cb14-33" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" tabindex="-1"></a><span class="co"># 使用gelman.diag函数计算R_hat值</span></span>
+<span id="cb14-35"><a href="#cb14-35" tabindex="-1"></a>gelman_results <span class="ot">&lt;-</span> <span class="fu">gelman.diag</span>(<span class="fu">mcmc.list</span>(mcmc_chains), <span class="at">autoburnin =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" tabindex="-1"></a><span class="co"># 显示R_hat值</span></span>
+<span id="cb14-38"><a href="#cb14-38" tabindex="-1"></a><span class="fu">print</span>(gelman_results)</span></code></pre></div>
+<pre><code>## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1          1</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># 重复上面的采样过程并计算R_hat，直到所有R_hat &lt; 1.2</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># 可视化边际分布的估计值</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co"># 取所有链的样本合并，计算边际分布估计值</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>all_samples <span class="ot">&lt;-</span> <span class="fu">unlist</span>(chains)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="fu">table</span>(all_samples) <span class="sc">/</span> <span class="fu">length</span>(all_samples)</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co"># 计算真实的边际概率质量函数</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">choose</span>(n, i) <span class="sc">*</span> <span class="fu">beta</span>(i <span class="sc">+</span> a, n <span class="sc">-</span> i <span class="sc">+</span> b) <span class="sc">/</span> <span class="fu">beta</span>(a, b)</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co"># 绘制结果</span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="fu">barplot</span>(fx, <span class="at">space =</span> <span class="dv">0</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>), <span class="at">xlab =</span> <span class="st">&quot;n&quot;</span>, <span class="at">main =</span> <span class="st">&quot;p(n)=bar; est=points&quot;</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">0</span><span class="sc">:</span>n <span class="sc">+</span> <span class="fl">0.5</span>, f1)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

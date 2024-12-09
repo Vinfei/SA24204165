@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Homework5</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework5</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="exercises-7.8" class="section level2">
+<h2>Exercises 7.8</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 加载库</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(bootstrap)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">attach</span>(scor)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># 将数据转换为矩阵</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(scor)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># 获取数据的行数</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(x)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># 初始化Jackknife估计的向量</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>theta_jack <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># 计算原始数据协方差矩阵的特征值</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cov</span>(x))<span class="sc">$</span>values</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>theta_hat <span class="ot">&lt;-</span> <span class="fu">max</span>(lambda) <span class="sc">/</span> <span class="fu">sum</span>(lambda)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># 对每个观测值进行Jackknife</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="co"># 排除第i个观测值</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  y <span class="ot">&lt;-</span> x[<span class="sc">-</span>i, ]</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  <span class="co"># 计算协方差矩阵</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">cov</span>(y)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="co"># 计算特征值</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">eigen</span>(s)<span class="sc">$</span>values</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="co"># 计算Jackknife估计</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  theta_jack[i] <span class="ot">&lt;-</span> <span class="fu">max</span>(lambda) <span class="sc">/</span> <span class="fu">sum</span>(lambda)</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co"># 计算Jackknife估计的偏差和标准误差</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>bias_jack <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">mean</span>(theta_jack) <span class="sc">-</span> theta_hat)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>se_jack <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> n <span class="sc">*</span> <span class="fu">sum</span>((theta_jack <span class="sc">-</span> <span class="fu">mean</span>(theta_jack))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Jackknife估计的偏差:&quot;</span>, bias_jack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Jackknife估计的偏差: 0.001069139</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Jackknife估计的标准误差:&quot;</span>, se_jack, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Jackknife估计的标准误差: 0.04955231</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 将结果存储在列表中</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">est =</span> theta_hat, <span class="at">bias =</span> bias_jack, <span class="at">se =</span> se_jack)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># 分离数据环境</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">detach</span>(scor)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>bootstrap)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># 打印结果列表</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<pre><code>## $est
+## [1] 0.619115
+## 
+## $bias
+## [1] 0.001069139
+## 
+## $se
+## [1] 0.04955231</code></pre>
+</div>
+<div id="exercises-7.10" class="section level2">
+<h2>Exercises 7.10</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># 加载必要的库</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">library</span>(DAAG)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;DAAG&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     hills</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">attach</span>(ironslag)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># 定义化学成分的范围</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="fl">0.1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># 调整绘图参数和尺寸</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co"># 拟合四个模型并绘制数据与拟合曲线</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co"># 线性模型</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="fu">plot</span>(chemical, magnetic, <span class="at">main =</span> <span class="st">&quot;Linear Model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Chemical&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Magnetic&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="fu">lines</span>(a, <span class="fu">predict</span>(model1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">chemical =</span> a)), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co"># 二次多项式模型</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="fu">plot</span>(chemical, magnetic, <span class="at">main =</span> <span class="st">&quot;Quadratic Model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Chemical&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Magnetic&quot;</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="fu">lines</span>(a, <span class="fu">predict</span>(model2, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">chemical =</span> a)), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co"># 对数模型</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(magnetic) <span class="sc">~</span> chemical)</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="fu">plot</span>(chemical, magnetic, <span class="at">main =</span> <span class="st">&quot;Exponential Model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Chemical&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Magnetic&quot;</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="fu">lines</span>(a, <span class="fu">exp</span>(<span class="fu">predict</span>(model3, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">chemical =</span> a))), <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co"># 三次多项式模型</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">3</span>))</span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="fu">plot</span>(chemical, magnetic, <span class="at">main =</span> <span class="st">&quot;Cubic Model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Chemical&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Magnetic&quot;</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="fu">lines</span>(a, <span class="fu">predict</span>(model4, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">chemical =</span> a)), <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># 恢复单一绘图模式</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># 计算每个模型的调整后的R²</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>rsq_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">list</span>(model1, model2, model3, model4), <span class="cf">function</span>(model) {</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="fu">summary</span>(model)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>})</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># 输出调整后的R²值</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="fu">print</span>(rsq_values)</span></code></pre></div>
+<pre><code>## [1] 0.5281545 0.5768151 0.5280556 0.5740396</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># 留一法交叉验证评估预测误差</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(magnetic)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">nrow =</span> n)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  temp_data <span class="ot">&lt;-</span> ironslag[<span class="sc">-</span>k, ]</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  full_data <span class="ot">&lt;-</span> ironslag[k, ]</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  model1_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical, <span class="at">data =</span> temp_data)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>  errors[k, <span class="dv">1</span>] <span class="ot">&lt;-</span> full_data<span class="sc">$</span>magnetic <span class="sc">-</span> <span class="fu">predict</span>(model1_fit, <span class="at">newdata =</span> full_data)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>  model2_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> temp_data)</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>  errors[k, <span class="dv">2</span>] <span class="ot">&lt;-</span> full_data<span class="sc">$</span>magnetic <span class="sc">-</span> <span class="fu">predict</span>(model2_fit, <span class="at">newdata =</span> full_data)</span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>  model3_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(magnetic) <span class="sc">~</span> chemical, <span class="at">data =</span> temp_data)</span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>  errors[k, <span class="dv">3</span>] <span class="ot">&lt;-</span> full_data<span class="sc">$</span>magnetic <span class="sc">-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(model3_fit, <span class="at">newdata =</span> full_data))</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>  model4_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(magnetic <span class="sc">~</span> chemical <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(chemical<span class="sc">^</span><span class="dv">3</span>), <span class="at">data =</span> temp_data)</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>  errors[k, <span class="dv">4</span>] <span class="ot">&lt;-</span> full_data<span class="sc">$</span>magnetic <span class="sc">-</span> <span class="fu">predict</span>(model4_fit, <span class="at">newdata =</span> full_data)</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>}</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co"># 计算每个模型的预测误差</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a>prediction_errors <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(errors<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="fu">print</span>(prediction_errors)</span></code></pre></div>
+<pre><code>## [1] 19.55644 17.85248 18.44188 18.17756</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># 模型(2)具有最小的预测误差，因此二次模型(2)也通过交叉验证被选中。</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># 分离数据环境</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="fu">detach</span>(ironslag)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>DAAG)</span></code></pre></div>
+</div>
+<div id="exercises-8.1" class="section level2">
+<h2>Exercises 8.1</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># 定义函数</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>cvm_test <span class="ot">&lt;-</span> <span class="cf">function</span>(sample1, sample2, <span class="at">num_permutations =</span> <span class="dv">199</span>) {</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  len1 <span class="ot">&lt;-</span> <span class="fu">length</span>(sample1)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  len2 <span class="ot">&lt;-</span> <span class="fu">length</span>(sample2)</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  combined <span class="ot">&lt;-</span> <span class="fu">c</span>(sample1, sample2)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  total_len <span class="ot">&lt;-</span> len1 <span class="sc">+</span> len2</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>  </span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>  <span class="co"># 计算经验分布函数</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>  ecdf1 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_len)</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>  ecdf2 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_len)</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>  </span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_len) {</span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>    ecdf1[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">as.integer</span>(combined[i] <span class="sc">&lt;=</span> sample1))</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>    ecdf2[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">as.integer</span>(combined[i] <span class="sc">&lt;=</span> sample2))</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>  }</span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>  </span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>  <span class="co"># 计算观察到的统计量</span></span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>  observed_statistic <span class="ot">&lt;-</span> ((len1 <span class="sc">*</span> len2) <span class="sc">/</span> total_len<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>((ecdf1 <span class="sc">-</span> ecdf2)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>  </span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>  <span class="co"># 进行置换检验</span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>  permuted_statistics <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_permutations, {</span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>    shuffled_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_len)</span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a>    shuffled_combined <span class="ot">&lt;-</span> combined[shuffled_indices]</span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a>    sample1_permuted <span class="ot">&lt;-</span> shuffled_combined[<span class="dv">1</span><span class="sc">:</span>len1]</span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a>    sample2_permuted <span class="ot">&lt;-</span> shuffled_combined[(len1 <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>total_len]</span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a>    </span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a>    <span class="co"># 重新计算经验分布函数</span></span>
+<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_len) {</span>
+<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a>      ecdf1[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">as.integer</span>(shuffled_combined[i] <span class="sc">&lt;=</span> sample1_permuted))</span>
+<span id="cb16-30"><a href="#cb16-30" tabindex="-1"></a>      ecdf2[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">as.integer</span>(shuffled_combined[i] <span class="sc">&lt;=</span> sample2_permuted))</span>
+<span id="cb16-31"><a href="#cb16-31" tabindex="-1"></a>    }</span>
+<span id="cb16-32"><a href="#cb16-32" tabindex="-1"></a>    </span>
+<span id="cb16-33"><a href="#cb16-33" tabindex="-1"></a>    <span class="co"># 计算置换后的统计量</span></span>
+<span id="cb16-34"><a href="#cb16-34" tabindex="-1"></a>    ((len1 <span class="sc">*</span> len2) <span class="sc">/</span> total_len<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>((ecdf1 <span class="sc">-</span> ecdf2)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-35"><a href="#cb16-35" tabindex="-1"></a>  })</span>
+<span id="cb16-36"><a href="#cb16-36" tabindex="-1"></a>  </span>
+<span id="cb16-37"><a href="#cb16-37" tabindex="-1"></a>  <span class="co"># 计算p值</span></span>
+<span id="cb16-38"><a href="#cb16-38" tabindex="-1"></a>  permuted_statistics <span class="ot">&lt;-</span> <span class="fu">c</span>(permuted_statistics, observed_statistic)</span>
+<span id="cb16-39"><a href="#cb16-39" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(permuted_statistics <span class="sc">&gt;=</span> observed_statistic)</span>
+<span id="cb16-40"><a href="#cb16-40" tabindex="-1"></a>  </span>
+<span id="cb16-41"><a href="#cb16-41" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">statistic =</span> observed_statistic, <span class="at">p_value =</span> p_value))</span>
+<span id="cb16-42"><a href="#cb16-42" tabindex="-1"></a>}</span>
+<span id="cb16-43"><a href="#cb16-43" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" tabindex="-1"></a><span class="co"># 加载数据</span></span>
+<span id="cb16-45"><a href="#cb16-45" tabindex="-1"></a><span class="fu">attach</span>(chickwts)</span>
+<span id="cb16-46"><a href="#cb16-46" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" tabindex="-1"></a><span class="co"># 提取数据</span></span>
+<span id="cb16-48"><a href="#cb16-48" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> weight[feed <span class="sc">==</span> <span class="st">&quot;soybean&quot;</span>]</span>
+<span id="cb16-49"><a href="#cb16-49" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> weight[feed <span class="sc">==</span> <span class="st">&quot;sunflower&quot;</span>]</span>
+<span id="cb16-50"><a href="#cb16-50" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> weight[feed <span class="sc">==</span> <span class="st">&quot;linseed&quot;</span>]</span>
+<span id="cb16-51"><a href="#cb16-51" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" tabindex="-1"></a><span class="co"># 运行检验</span></span>
+<span id="cb16-53"><a href="#cb16-53" tabindex="-1"></a>test_result1 <span class="ot">&lt;-</span> <span class="fu">cvm_test</span>(x1, x3)</span>
+<span id="cb16-54"><a href="#cb16-54" tabindex="-1"></a>test_result2 <span class="ot">&lt;-</span> <span class="fu">cvm_test</span>(x2, x3)</span>
+<span id="cb16-55"><a href="#cb16-55" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="#cb16-56" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb16-57"><a href="#cb16-57" tabindex="-1"></a><span class="fu">print</span>(test_result1)</span></code></pre></div>
+<pre><code>## $statistic
+## [1] 0.1626162
+## 
+## $p_value
+## [1] 0.315</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">print</span>(test_result2)</span></code></pre></div>
+<pre><code>## $statistic
+## [1] 1.520833
+## 
+## $p_value
+## [1] 0.005</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># 比较CvM检验的p值不显著。无法表明这些分布之间存在差异。</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co"># 卸载数据</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">detach</span>(chickwts)</span></code></pre></div>
+</div>
+<div id="exercises-8.2" class="section level2">
+<h2>Exercises 8.2</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># 定义函数</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>spearman_permutation_test <span class="ot">&lt;-</span> <span class="cf">function</span>(data_x, data_y) {</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="co"># 计算相关系数</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  original_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(data_x, data_y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  </span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>  <span class="co"># 获取样本长度</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>  sample_size <span class="ot">&lt;-</span> <span class="fu">length</span>(data_x)</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>  </span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>  <span class="co"># 进行num_permutations次置换，计算每次置换后的斯皮尔曼秩相关系数</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>  permuted_results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_permutations, <span class="at">expr =</span> {</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>    shuffled_index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>sample_size)</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>    <span class="fu">cor.test</span>(data_x, data_y[shuffled_index], <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)<span class="sc">$</span>estimate</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>  })</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>  </span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>  <span class="co"># 将原始统计量与置换统计量合并</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>  all_results <span class="ot">&lt;-</span> <span class="fu">c</span>(original_test<span class="sc">$</span>estimate, permuted_results)</span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>  </span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>  <span class="co"># 计算p值，即原始统计量小于等于置换统计量的比例</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(all_results <span class="sc">&gt;=</span> original_test<span class="sc">$</span>estimate)</span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>  </span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a>  <span class="co"># 返回结果</span></span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">rho =</span> original_test<span class="sc">$</span>estimate, <span class="at">p_value =</span> p_value))</span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a>}</span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a><span class="co"># 加载包</span></span>
+<span id="cb21-26"><a href="#cb21-26" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb21-27"><a href="#cb21-27" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" tabindex="-1"></a><span class="co"># 设置均值和协方差矩阵</span></span>
+<span id="cb21-29"><a href="#cb21-29" tabindex="-1"></a>mean_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb21-30"><a href="#cb21-30" tabindex="-1"></a>covariance_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb21-31"><a href="#cb21-31" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" tabindex="-1"></a><span class="co"># 设置样本大小和置换次数</span></span>
+<span id="cb21-33"><a href="#cb21-33" tabindex="-1"></a>sample_count <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb21-34"><a href="#cb21-34" tabindex="-1"></a>num_permutations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb21-35"><a href="#cb21-35" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="#cb21-36" tabindex="-1"></a><span class="co"># 生成双变量正态分布样本</span></span>
+<span id="cb21-37"><a href="#cb21-37" tabindex="-1"></a>normal_samples <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(sample_count, mean_vector, covariance_matrix)</span>
+<span id="cb21-38"><a href="#cb21-38" tabindex="-1"></a></span>
+<span id="cb21-39"><a href="#cb21-39" tabindex="-1"></a><span class="co"># 应用斯皮尔曼秩相关检验和置换检验</span></span>
+<span id="cb21-40"><a href="#cb21-40" tabindex="-1"></a>normal_cor_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(normal_samples[, <span class="dv">1</span>], normal_samples[, <span class="dv">2</span>], <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb21-41"><a href="#cb21-41" tabindex="-1"></a>normal_spearman_test <span class="ot">&lt;-</span> <span class="fu">spearman_permutation_test</span>(normal_samples[, <span class="dv">1</span>], normal_samples[, <span class="dv">2</span>])</span>
+<span id="cb21-42"><a href="#cb21-42" tabindex="-1"></a></span>
+<span id="cb21-43"><a href="#cb21-43" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb21-44"><a href="#cb21-44" tabindex="-1"></a><span class="fu">print</span>(normal_cor_test)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  normal_samples[, 1] and normal_samples[, 2]
+## S = 3176, p-value = 0.1156
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.2934372</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(normal_spearman_test)</span></code></pre></div>
+<pre><code>## $rho
+##       rho 
+## 0.2934372 
+## 
+## $p_value
+## [1] 0.06693307</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># 生成对数正态分布样本</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>lognormal_samples <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">mvrnorm</span>(sample_count, mean_vector, covariance_matrix))</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># 再次应用斯皮尔曼秩相关检验和置换检验</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>lognormal_cor_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(lognormal_samples[, <span class="dv">1</span>], lognormal_samples[, <span class="dv">2</span>], <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>lognormal_spearman_test <span class="ot">&lt;-</span> <span class="fu">spearman_permutation_test</span>(lognormal_samples[, <span class="dv">1</span>], lognormal_samples[, <span class="dv">2</span>])</span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="fu">print</span>(lognormal_cor_test)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  lognormal_samples[, 1] and lognormal_samples[, 2]
+## S = 3102, p-value = 0.09586
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3098999</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># 两个测试的p值都是显著的，并且非常接近。</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">print</span>(lognormal_spearman_test)</span></code></pre></div>
+<pre><code>## $rho
+##       rho 
+## 0.3098999 
+## 
+## $p_value
+## [1] 0.04495504</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># 两个测试的p值都是显著的，并且非常接近。</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># 卸载MASS包</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>MASS)</span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

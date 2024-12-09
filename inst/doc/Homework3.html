@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Homework3</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework3</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="exercises-6.6" class="section level2">
+<h2>Exercises 6.6</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span>       <span class="co"># 样本大小</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>num_sim <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 蒙特卡洛模拟次数</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># 定义函数计算样本偏度</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>sample_skewness <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  m3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> mean_x)<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> n</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> (n <span class="sc">/</span> ((n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">2</span>))) <span class="sc">*</span> (m3 <span class="sc">/</span> (sd_x<span class="sc">^</span><span class="dv">3</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="fu">return</span>(b1)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># 初始化向量存储sqrt(b1)</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>sqrt_b1 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(num_sim)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># 蒙特卡洛模拟</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_sim) {</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n) <span class="co"># 生成标准正态分布样本</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> <span class="fu">sample_skewness</span>(sample)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  </span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="co"># 为避免负值导致复数，取绝对值</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  <span class="cf">if</span> (b1 <span class="sc">&gt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>    sqrt_b1[i] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(b1)</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    sqrt_b1[i] <span class="ot">&lt;-</span> <span class="cn">NA</span>  <span class="co"># 标记为缺失值</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  }</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>}</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co"># 移除缺失值</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>sqrt_b1 <span class="ot">&lt;-</span> sqrt_b1[<span class="sc">!</span><span class="fu">is.na</span>(sqrt_b1)]</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co"># 计算所需分位数</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>quantiles_sim <span class="ot">&lt;-</span> <span class="fu">quantile</span>(sqrt_b1, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>))</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co"># 大样本近似的分位数</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co"># 由于 sqrt(b1) ~ N(0, sqrt(6/n))，计算理论分位数</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="co"># 注意：由于我们取了绝对值，理论分布应考虑对称性</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="co"># 因此，计算双侧分位数</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>sd_approx <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">6</span> <span class="sc">/</span> n)</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>quantiles_theory <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_approx)</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co"># 计算标准误差 using Var(x̂_q) = q(1 - q) / (n f(x_q)^2 )</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="co"># 这里的f(x_q)是正态分布的密度函数</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="co"># 注意：因为我们取了绝对值，密度应取双侧的</span></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="co"># 计算f(x_q)</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>f_xq <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(quantiles_sim, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_approx)</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="co"># 计算Var(x_q)和标准误差</span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>var_xq <span class="ot">&lt;-</span> (<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>))) <span class="sc">/</span> (n <span class="sc">*</span> (f_xq)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>se_xq <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_xq)</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="co"># 比较模拟分位数与理论分位数</span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>  <span class="at">Quantile =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a>  <span class="at">Simulated =</span> quantiles_sim,</span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a>  <span class="at">Theoretical =</span> quantiles_theory,</span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>  <span class="at">SE =</span> se_xq</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a>)</span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;分位数比较:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;分位数比较:&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">print</span>(comparison)</span></code></pre></div>
+<pre><code>##       Quantile   Simulated Theoretical           SE
+## 2.5%     0.025 0.001589656  -0.1518182 0.0009588029
+## 5%       0.050 0.002192153  -0.1274098 0.0013387093
+## 95%      0.950 0.012264005   0.1274098 0.0013550513
+## 97.5%    0.975 0.013203116   0.1518182 0.0009726281</code></pre>
+</div>
+<div id="exercises-6.b" class="section level2">
+<h2>Exercises 6.B</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># 样本数量</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>n_sim <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># 模拟次数</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Step 1: 双变量正态分布</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)  <span class="co"># 相关系数为 0.5 的协方差矩阵</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co"># 初始化 p 值向量</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>p_values_pearson_normal <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>p_values_spearman_normal <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>p_values_kendall_normal <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># 模拟双变量正态分布</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>  X <span class="ot">&lt;-</span> data[, <span class="dv">1</span>]</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> data[, <span class="dv">2</span>]</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>  </span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>  <span class="co"># 相关性检验</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>  p_values_pearson_normal[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>  p_values_spearman_normal[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>  p_values_kendall_normal[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>}</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co"># 计算正态分布下的拒绝率 (alpha = 0.05)</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>power_pearson_normal <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_pearson_normal <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>power_spearman_normal <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_spearman_normal <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a>power_kendall_normal <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_kendall_normal <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;双变量正态分布时的检验力:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 双变量正态分布时的检验力:</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pearson检验力: &quot;</span>, power_pearson_normal, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Pearson检验力:  1</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Spearman检验力: &quot;</span>, power_spearman_normal, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Spearman检验力:  1</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Kendall检验力: &quot;</span>, power_kendall_normal, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Kendall检验力:  1</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Step 2: 替代分布 - 非正态分布 (例如, X 和 Y 存在非线性关系)</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>p_values_pearson_alt <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>p_values_spearman_alt <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>p_values_kendall_alt <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> X<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="fl">0.1</span>)  <span class="co"># X 和 Y 存在非线性关系</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  </span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>  <span class="co"># 相关性检验</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>  p_values_pearson_alt[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>  p_values_spearman_alt[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>  p_values_kendall_alt[i] <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(X, Y, <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>}</span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co"># 计算非正态分布下的拒绝率 (alpha = 0.05)</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>power_pearson_alt <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_pearson_alt <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>power_spearman_alt <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_spearman_alt <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>power_kendall_alt <span class="ot">&lt;-</span> <span class="fu">mean</span>(p_values_kendall_alt <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">替代分布（非正态分布）时的检验力:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 替代分布（非正态分布）时的检验力:</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pearson检验力: &quot;</span>, power_pearson_alt, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Pearson检验力:  0.392</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Spearman检验力: &quot;</span>, power_spearman_alt, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Spearman检验力:  0.141</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Kendall检验力: &quot;</span>, power_kendall_alt, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Kendall检验力:  0.214</code></pre>
+</div>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="do">### 1. 假设检验问题</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="co"># H0: 两种方法效能无显著差异 (mu1 = mu2)</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co"># H1: 两种方法效能有显著差异 (mu1 != mu2)</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="co"># 这里 mu1 和 mu2 分别是两种方法的效能均值。</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="do">### 2. 使用哪种检验</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co"># 1. Z检验: 适用于样本量很大且已知总体方差的情况下。这里未提供总体方差信息，因此Z检验不适合。</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co"># 2. 两样本t检验: 适用于比较两组独立样本的均值是否有显著差异，假设方差不相等或相等的情况下都可以用。</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co"># 3. 配对t检验: 适用于相同对象在两种不同处理下的效能比较（即配对数据）。如果两个效能值是针对同一组实验对象产生的，则应该使用配对t检验。</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="co"># 4. McNemar检验: 适用于分类变量，尤其是配对数据的二项检验。这里效能是连续变量，所以不适用。</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a><span class="co"># 假设两种方法的效能是基于相同的实验对象测量的（即配对数据），配对t检验会是更适合的选择。</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co"># 如果这两组效能是独立的（不同实验对象），则使用两样本t检验。</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="do">### 3. 进行假设检验所需的最少必要信息</span></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co"># - 每种方法的效能值（样本均值、方差）</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co"># - 样本大小（10,000次实验）</span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co"># - 显著性水平 (\(\alpha = 0.05\))</span></span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co"># - 是否配对数据</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co"># 设置随机种子以便结果可重现</span></span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a><span class="co"># 样本大小，即实验的次数</span></span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span>  </span>
+<span id="cb21-26"><a href="#cb21-26" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" tabindex="-1"></a><span class="co"># 模拟两组效能数据:</span></span>
+<span id="cb21-28"><a href="#cb21-28" tabindex="-1"></a><span class="co"># 方法1的效能均值为0.651，标准差为0.05</span></span>
+<span id="cb21-29"><a href="#cb21-29" tabindex="-1"></a><span class="co"># 方法2的效能均值为0.676，标准差为0.05</span></span>
+<span id="cb21-30"><a href="#cb21-30" tabindex="-1"></a>method1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.651</span>, <span class="at">sd =</span> <span class="fl">0.05</span>)  <span class="co"># 第一组方法的效能数据</span></span>
+<span id="cb21-31"><a href="#cb21-31" tabindex="-1"></a>method2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.676</span>, <span class="at">sd =</span> <span class="fl">0.05</span>)  <span class="co"># 第二组方法的效能数据</span></span>
+<span id="cb21-32"><a href="#cb21-32" tabindex="-1"></a></span>
+<span id="cb21-33"><a href="#cb21-33" tabindex="-1"></a><span class="co"># 1. 配对t检验（假设实验是基于相同对象）</span></span>
+<span id="cb21-34"><a href="#cb21-34" tabindex="-1"></a><span class="co"># H0: 两种方法效能无显著差异 (mu1 = mu2)</span></span>
+<span id="cb21-35"><a href="#cb21-35" tabindex="-1"></a><span class="co"># H1: 两种方法效能有显著差异 (mu1 != mu2)</span></span>
+<span id="cb21-36"><a href="#cb21-36" tabindex="-1"></a>paired_t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(method1, method2, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-37"><a href="#cb21-37" tabindex="-1"></a></span>
+<span id="cb21-38"><a href="#cb21-38" tabindex="-1"></a><span class="co"># 打印配对t检验结果</span></span>
+<span id="cb21-39"><a href="#cb21-39" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;配对t检验结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;配对t检验结果：&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(paired_t_test_result)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  method1 and method2
+## t = -34.981, df = 9999, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -0.02604530 -0.02328123
+## sample estimates:
+## mean difference 
+##     -0.02466326</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># 2. 两样本t检验（假设两组数据来自不同实验对象）</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co"># H0: 两种方法效能无显著差异 (mu1 = mu2)</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co"># H1: 两种方法效能有显著差异 (mu1 != mu2)</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>independent_t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(method1, method2, <span class="at">paired =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co"># 打印两样本t检验结果</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;两样本t检验结果：&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;两样本t检验结果：&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">print</span>(independent_t_test_result)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  method1 and method2
+## t = -34.876, df = 19998, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.02604939 -0.02327713
+## sample estimates:
+## mean of x mean of y 
+## 0.6508814 0.6755447</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># 结论：</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="co"># 比较两个t检验的p值，如果p值小于0.05，我们可以拒绝原假设，说明效能存在显著差异。</span></span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

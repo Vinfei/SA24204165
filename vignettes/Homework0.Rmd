@@ -1,0 +1,49 @@
+---
+title: "Homework0"
+author: "吴鹏飞"
+date: "2023-12-09"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Homework0}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Question
+
+Use knitr to produce at least 3 examples. For each example, texts should mix with figures and/or tables. Better to have mathematical formulas.
+
+## Answer
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+```
+
+### Example 1: Text and Figure
+
+汽车重量与每加仑英里数的关系如下图所示：
+
+```{r example1, echo=FALSE}
+data(mtcars)
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "汽车重量与每加仑英里数的关系",
+       x = "重量 (1000磅)",
+       y = "每加仑英里数")
+print(p)
+```
+
+### Example 2: Text and Table
+
+以下是汽车数据集的前六行：
+
+```{r example2, echo=FALSE}
+kable(head(mtcars), caption = "汽车数据集的前六行")
+```
+
+### Example 3: Text and Mathematical Formula
+
+我们可以使用以下公式计算圆的面积：
+
+$$A = \pi r^2$$

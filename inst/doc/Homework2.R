@@ -1,0 +1,155 @@
+## -----------------------------------------------------------------------------
+# 设置参数
+alpha <- 3
+beta <- 3
+x_values <- seq(0.1, 0.9, by = 0.1)
+num_samples <- 10000
+
+# 蒙特卡罗估计函数
+monte_carlo_beta_cdf <- function(alpha, beta, x_values, num_samples) {
+  # 生成 Beta(3, 3) 分布的随机样本
+  samples <- rbeta(num_samples, alpha, beta)
+  
+  # 计算 CDF
+  cdf_estimates <- sapply(x_values, function(x) mean(samples <= x))
+  
+  return(cdf_estimates)
+}
+
+# 计算蒙特卡罗估计的 CDF
+mc_cdf <- monte_carlo_beta_cdf(alpha, beta, x_values, num_samples)
+
+# 使用 R 的 pbeta 函数进行比较
+r_cdf <- pbeta(x_values, alpha, beta)
+
+# 打印结果
+print(data.frame(x_values, mc_cdf, r_cdf))
+
+## -----------------------------------------------------------------------------
+# 定义生成单个瑞利分布样本的函数
+generate_rayleigh1 <- function(n, sigma){
+  u <- runif(n)
+  return(sigma * sqrt(-2 * log(u)))
+}
+
+# 定义生成对偶变量瑞利分布样本的函数
+generate_rayleigh2 <- function(n, sigma){
+  u <- runif(n/2)
+  x1 <- sigma * sqrt(-2 * log(u))
+  x2 <- sigma * sqrt(-2 * log(1 - u))
+  return(c(x1, x2))
+}
+
+# 设置参数
+sigma <- 2
+n <- 1000
+# 生成样本并计算平均值
+r1 <- replicate(n, mean(generate_rayleigh1(2, sigma)))
+r2 <- replicate(n, mean(generate_rayleigh2(2, sigma)))
+
+# 计算方差
+var_r1 <- var(r1)
+var_r2 <- var(r2)
+
+# 计算方差减少百分比
+percent_reduction <- 100 * (var_r1 - var_r2) / var_r1
+
+# 输出结果
+percent_reduction
+
+## -----------------------------------------------------------------------------
+# 加载库
+library(truncnorm)
+
+# 设置参数
+N <- 10000  # 样本数量
+a <- 1  # 定义积分区间
+set.seed(123)  
+
+# 定义目标函数 g(x)
+g <- function(x) {
+  return((x^2 / sqrt(2 * pi)) * exp(-x^2 / 2))
+}
+
+# 定义 f1: 截断的正态分布 f1 ~ N(μ = 2, σ = 1)，在 [1, ∞)
+mu1 <- 2
+sigma1 <- 1
+f1 <- function(x) {
+  return(dtruncnorm(x, a = 1, b = Inf, mean = mu1, sd = sigma1))
+}
+
+# 从 f1 中采样
+x1 <- rtruncnorm(N, a = 1, b = Inf, mean = mu1, sd = sigma1)
+
+# 重要性抽样估计使用 f1
+importance_sampling_f1 <- g(x1) / f1(x1)
+I_hat_f1 <- mean(importance_sampling_f1)
+var_f1 <- var(importance_sampling_f1) / N
+
+# 定义 f1: 指数分布
+lambda2 <- 1
+f2 <- function(x) {
+  return(dexp(x - 1, rate = lambda2))
+}
+
+# 从 f2 中采样
+x2 <- rexp(N, rate = lambda2) + 1
+
+# 重要性抽样估计使用 f2
+importance_sampling_f2 <- g(x2) / f2(x2)
+I_hat_f2 <- mean(importance_sampling_f2)
+var_f2 <- var(importance_sampling_f2) / N
+
+# 输出结果
+cat("f1 的估计值：", I_hat_f1, "\n")
+cat("f1 的方差：", var_f1, "\n")
+cat("f2 的估计值：", I_hat_f2, "\n")
+cat("f2 的方差：", var_f2, "\n")
+if (var_f1 < var_f2) {
+  cat("f1 的方差更小\n")
+} else {
+  cat("f2 的方差更小\n")
+}
+
+## -----------------------------------------------------------------------------
+# 加载库
+library(ggplot2)
+
+# 设置不同的n值
+n_values <- c(10^4, 2*10^4, 4*10^4, 6*10^4, 8*10^4)
+
+# 初始化向量以存储计算时间
+a_n <- numeric(length(n_values))
+
+# 对每个n值进行100次模拟
+for (i in 1:length(n_values)) {
+  n <- n_values[i]
+  times <- numeric(100)
+  
+  for (j in 1:100) {
+    # 生成随机排列的数字
+    random_numbers <- sample(1:n)
+    
+    # 计算排序操作的时间
+    times[j] <- system.time(sort(random_numbers, method = "quick"))["elapsed"]
+  }
+  
+  # 计算平均时间
+  a_n[i] <- mean(times)
+}
+
+# 计算tn值
+t_n <- n_values * log(n_values)
+
+# 进行线性回归分析
+model <- lm(a_n ~ t_n)
+
+# 绘制散点图和回归线
+plot(t_n, a_n, main = "Monte Carlo Experiment - Sorting Time Regression",
+     xlab = "n * log(n)", ylab = "Average Computation Time (a_n)",
+     pch = 19, col = "blue")
+abline(model, col = "red")
+
+# 显示回归分析的摘要
+summary(model)
+

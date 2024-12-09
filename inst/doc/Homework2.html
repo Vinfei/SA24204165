@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Homework2</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework2</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="exercises-5.4" class="section level2">
+<h2>Exercises 5.4</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>num_samples <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># 蒙特卡罗估计函数</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>monte_carlo_beta_cdf <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha, beta, x_values, num_samples) {</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="co"># 生成 Beta(3, 3) 分布的随机样本</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  samples <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(num_samples, alpha, beta)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="co"># 计算 CDF</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  cdf_estimates <span class="ot">&lt;-</span> <span class="fu">sapply</span>(x_values, <span class="cf">function</span>(x) <span class="fu">mean</span>(samples <span class="sc">&lt;=</span> x))</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="fu">return</span>(cdf_estimates)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># 计算蒙特卡罗估计的 CDF</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>mc_cdf <span class="ot">&lt;-</span> <span class="fu">monte_carlo_beta_cdf</span>(alpha, beta, x_values, num_samples)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># 使用 R 的 pbeta 函数进行比较</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>r_cdf <span class="ot">&lt;-</span> <span class="fu">pbeta</span>(x_values, alpha, beta)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">data.frame</span>(x_values, mc_cdf, r_cdf))</span></code></pre></div>
+<pre><code>##   x_values mc_cdf   r_cdf
+## 1      0.1 0.0080 0.00856
+## 2      0.2 0.0565 0.05792
+## 3      0.3 0.1557 0.16308
+## 4      0.4 0.3111 0.31744
+## 5      0.5 0.4924 0.50000
+## 6      0.6 0.6788 0.68256
+## 7      0.7 0.8374 0.83692
+## 8      0.8 0.9444 0.94208
+## 9      0.9 0.9917 0.99144</code></pre>
+</div>
+<div id="exercises-5.9" class="section level2">
+<h2>Exercises 5.9</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># 定义生成单个瑞利分布样本的函数</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>generate_rayleigh1 <span class="ot">&lt;-</span> <span class="cf">function</span>(n, sigma){</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">return</span>(sigma <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(u)))</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># 定义生成对偶变量瑞利分布样本的函数</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>generate_rayleigh2 <span class="ot">&lt;-</span> <span class="cf">function</span>(n, sigma){</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(u))</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> u))</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(x1, x2))</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>}</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co"># 生成样本并计算平均值</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n, <span class="fu">mean</span>(<span class="fu">generate_rayleigh1</span>(<span class="dv">2</span>, sigma)))</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(n, <span class="fu">mean</span>(<span class="fu">generate_rayleigh2</span>(<span class="dv">2</span>, sigma)))</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co"># 计算方差</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>var_r1 <span class="ot">&lt;-</span> <span class="fu">var</span>(r1)</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>var_r2 <span class="ot">&lt;-</span> <span class="fu">var</span>(r2)</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co"># 计算方差减少百分比</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>percent_reduction <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> (var_r1 <span class="sc">-</span> var_r2) <span class="sc">/</span> var_r1</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>percent_reduction</span></code></pre></div>
+<pre><code>## [1] 94.08381</code></pre>
+</div>
+<div id="exercises-5.13" class="section level2">
+<h2>Exercises 5.13</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># 加载库</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(truncnorm)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 样本数量</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># 定义积分区间</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># 定义目标函数 g(x)</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="fu">return</span>((x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>}</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co"># 定义 f1: 截断的正态分布 f1 ~ N(μ = 2, σ = 1)，在 [1, ∞)</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>sigma1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">dtruncnorm</span>(x, <span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="cn">Inf</span>, <span class="at">mean =</span> mu1, <span class="at">sd =</span> sigma1))</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>}</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co"># 从 f1 中采样</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rtruncnorm</span>(N, <span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="cn">Inf</span>, <span class="at">mean =</span> mu1, <span class="at">sd =</span> sigma1)</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co"># 重要性抽样估计使用 f1</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>importance_sampling_f1 <span class="ot">&lt;-</span> <span class="fu">g</span>(x1) <span class="sc">/</span> <span class="fu">f1</span>(x1)</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>I_hat_f1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(importance_sampling_f1)</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>var_f1 <span class="ot">&lt;-</span> <span class="fu">var</span>(importance_sampling_f1) <span class="sc">/</span> N</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co"># 定义 f1: 指数分布</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>lambda2 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">dexp</span>(x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">rate =</span> lambda2))</span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>}</span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co"># 从 f2 中采样</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rexp</span>(N, <span class="at">rate =</span> lambda2) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="co"># 重要性抽样估计使用 f2</span></span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a>importance_sampling_f2 <span class="ot">&lt;-</span> <span class="fu">g</span>(x2) <span class="sc">/</span> <span class="fu">f2</span>(x2)</span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a>I_hat_f2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(importance_sampling_f2)</span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a>var_f2 <span class="ot">&lt;-</span> <span class="fu">var</span>(importance_sampling_f2) <span class="sc">/</span> N</span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="co"># 输出结果</span></span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;f1 的估计值：&quot;</span>, I_hat_f1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## f1 的估计值： 0.3991888</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;f1 的方差：&quot;</span>, var_f1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## f1 的方差： 6.240405e-06</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;f2 的估计值：&quot;</span>, I_hat_f2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## f2 的估计值： 0.3989337</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;f2 的方差：&quot;</span>, var_f2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## f2 的方差： 2.514654e-06</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="cf">if</span> (var_f1 <span class="sc">&lt;</span> var_f2) {</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;f1 的方差更小</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;f2 的方差更小</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## f2 的方差更小</code></pre>
+</div>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># 加载库</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># 设置不同的n值</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>n_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>, <span class="dv">2</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>, <span class="dv">4</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>, <span class="dv">8</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co"># 初始化向量以存储计算时间</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>a_n <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(n_values))</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co"># 对每个n值进行100次模拟</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n_values)) {</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  n <span class="ot">&lt;-</span> n_values[i]</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  times <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  </span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>    <span class="co"># 生成随机排列的数字</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>    random_numbers <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>    </span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>    <span class="co"># 计算排序操作的时间</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>    times[j] <span class="ot">&lt;-</span> <span class="fu">system.time</span>(<span class="fu">sort</span>(random_numbers, <span class="at">method =</span> <span class="st">&quot;quick&quot;</span>))[<span class="st">&quot;elapsed&quot;</span>]</span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>  }</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>  </span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>  <span class="co"># 计算平均时间</span></span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>  a_n[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(times)</span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>}</span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="co"># 计算tn值</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a>t_n <span class="ot">&lt;-</span> n_values <span class="sc">*</span> <span class="fu">log</span>(n_values)</span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a><span class="co"># 进行线性回归分析</span></span>
+<span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(a_n <span class="sc">~</span> t_n)</span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a><span class="co"># 绘制散点图和回归线</span></span>
+<span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a><span class="fu">plot</span>(t_n, a_n, <span class="at">main =</span> <span class="st">&quot;Monte Carlo Experiment - Sorting Time Regression&quot;</span>,</span>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;n * log(n)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Average Computation Time (a_n)&quot;</span>,</span>
+<span id="cb15-36"><a href="#cb15-36" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb15-37"><a href="#cb15-37" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># 显示回归分析的摘要</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = a_n ~ t_n)
+## 
+## Residuals:
+##          1          2          3          4          5 
+## -3.156e-04  5.399e-04 -7.410e-06 -4.986e-04  2.817e-04 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept) 2.291e-04  4.007e-04   0.572   0.6074  
+## t_n         4.195e-09  7.367e-10   5.695   0.0107 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0004896 on 3 degrees of freedom
+## Multiple R-squared:  0.9153, Adjusted R-squared:  0.8871 
+## F-statistic: 32.43 on 1 and 3 DF,  p-value: 0.01074</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

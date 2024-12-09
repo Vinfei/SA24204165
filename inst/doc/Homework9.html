@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Homework9</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework9</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="exercises-12" class="section level2">
+<h2>Exercises (1)(2)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># 定义R版本的采样器</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>gibbsSamplerR <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, n, N, x_init) {</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="co"># 初始化</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> N, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x_init</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  </span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="co"># 从 Beta(x + a, n - x + b) 分布采样 y</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x <span class="sc">+</span> a, n <span class="sc">-</span> x <span class="sc">+</span> b)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    </span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    <span class="co"># 从 Binomial(n, y) 分布采样 x</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    <span class="co"># 存储结果</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    chain[i, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  }</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  </span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="fu">return</span>(chain)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co"># Rcpp 实现的 Gibbs 采样器</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">cppFunction</span>(<span class="st">&#39;</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="st">NumericMatrix gibbsSampler(int a, int b, int n, int N, int x_init) {</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="st">  NumericMatrix chain(N, 2);</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="st">  int x = x_init;</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="st">  double y;</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="st">  for (int i = 0; i &lt; N; i++) {</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="st">    y = R::rbeta(x + a, n - x + b);</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="st">    x = R::rbinom(n, y);</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="st">    chain(i, 0) = x;</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="st">    chain(i, 1) = y;</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="st">  return chain;</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="st">&#39;</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>x_init <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="co"># 使用 R 和 Rcpp 实现采样</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>samples_R <span class="ot">&lt;-</span> <span class="fu">gibbsSamplerR</span>(a, b, n, N, x_init)</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>samples_Rcpp <span class="ot">&lt;-</span> <span class="fu">gibbsSampler</span>(a, b, n, N, x_init)</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="co"># 提取 x 和 y 的采样结果</span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>x_R <span class="ot">&lt;-</span> samples_R[, <span class="dv">1</span>]</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>y_R <span class="ot">&lt;-</span> samples_R[, <span class="dv">2</span>]</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>x_Rcpp <span class="ot">&lt;-</span> samples_Rcpp[, <span class="dv">1</span>]</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>y_Rcpp <span class="ot">&lt;-</span> samples_Rcpp[, <span class="dv">2</span>]</span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="co"># (3) 使用 qqplot 比较生成的随机数</span></span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># 设置图形布局为 1 行 2 列</span></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a><span class="co"># 比较 x 的采样</span></span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="fu">qqplot</span>(x_R, x_Rcpp, <span class="at">main =</span> <span class="st">&quot;QQ Plot of x&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;R Samples (x)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Rcpp Samples (x)&quot;</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a><span class="co"># 比较 y 的采样</span></span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a><span class="fu">qqplot</span>(y_R, y_Rcpp, <span class="at">main =</span> <span class="st">&quot;QQ Plot of y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;R Samples (y)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Rcpp Samples (y)&quot;</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<p>两个 QQ 图的点沿参考线 <span class="math inline">\(y = x\)</span>
+均匀分布，两种实现生成的随机数分布一致，说明采样器实现正确。</p>
+</div>
+<div id="exercises-3" class="section level2">
+<h2>Exercises (3)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># 定义R版本的采样器</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>gibbsSamplerR <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, n, N, x_init) {</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> N, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x_init</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1</span>, x <span class="sc">+</span> a, n <span class="sc">-</span> x <span class="sc">+</span> b)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n, y)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    chain[i, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  }</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>  <span class="fu">return</span>(chain)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co"># Rcpp版本的Gibbs采样器</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="fu">cppFunction</span>(<span class="st">&#39;</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="st">NumericMatrix gibbsSampler(int a, int b, int n, int N, int x_init) {</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="st">  NumericMatrix chain(N, 2);</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="st">  int x = x_init;</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="st">  double y;</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="st">  for (int i = 0; i &lt; N; i++) {</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="st">    y = R::rbeta(x + a, n - x + b);</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="st">    x = R::rbinom(n, y);</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="st">    chain(i, 0) = x;</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="st">    chain(i, 1) = y;</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="st">  return chain;</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="st">&#39;</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># 设置较大的采样次数以观察性能差异</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a>x_init <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="co"># 比较两种实现的运行时间</span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a>benchmark_results <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a>  <span class="at">R =</span> <span class="fu">gibbsSamplerR</span>(a, b, n, N, x_init),</span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a>  <span class="at">Rcpp =</span> <span class="fu">gibbsSampler</span>(a, b, n, N, x_init),</span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span>  <span class="co"># 重复测试 10 次</span></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a>)</span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a><span class="fu">print</span>(benchmark_results)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##  expr     min      lq     mean   median      uq     max neval
+##     R 14.3645 14.7482 16.11657 15.83055 17.6755 18.1986    10
+##  Rcpp  1.7488  1.7955  1.92156  1.82870  1.9303  2.5256    10</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># 可视化结果</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">boxplot</span>(benchmark_results, <span class="at">main =</span> <span class="st">&quot;Computation Time Comparison&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Time (ms)&quot;</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAAw1BMVEUAAAAAADoAAGYAOjoAOmYAOpAAZpAAZrY6AAA6ADo6OgA6OmY6ZpA6ZrY6kLY6kNtmAABmADpmAGZmOgBmOjpmZmZmkJBmkLZmkNtmtrZmtttmtv+QOgCQOjqQZgCQZjqQkGaQkLaQtpCQttuQtv+Q29uQ2/+2ZgC2Zjq2ZpC2kGa227a229u22/+2/7a2/9u2///T09PbkDrbkGbbtmbbtpDb27bb29vb2//b/9vb////tmb/25D/27b//7b//9v///9qEo05AAAACXBIWXMAAA7DAAAOwwHHb6hkAAALTElEQVR4nO2dDXvixhWFD65dyCZbSLcfaew2adJC2qybLcmmjfGC/v+vynzpCxCake743LX1Ps8usrg69+gyMxIwHqOYuAjYBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7O7j389ArAp/fDdQ//ene643CHm4fLx21QMY8ID9qj7XqZc/lwLnL/JnhcDs314c3Vu9MdmQo03q4nukAmsOR2YK4Njgp0sqPzwLpAkbkE7F4AZ/ZtgetvzYtuEruKvv8D8Js/m639CvP3rzD7svhxget14c77e/Ps9X1R1sDELP1pmp/e29f203U476sf7o4ETarZP7+D12qe8Tw83jyc5iwO5ojZ64eRdmtz1sU3b3D11tv70fTX2We+vxqt0/oYX/7VPvz19f+9AYs51mT0vAoFqF7w2fpcgXbVk60C1YLlpju+s0BHOcOe63fj7NbmwiE3vzh74XinabdPC2QL3/jxcREOW7qMy+Inc9SXfofNeHVv98xbBfLbxvpvH+zxjR03D01B9+rfh+3uAh3nNCm96gi7TXPmyZv74n9Vi32wIUuvdaZAdW5HGD3sgznYvzA39Xm7fu9iTgpk+fnfr+rq+QI1BK21W5exeY7HBWrn9AnMkSHDULsNc96Fz2cCr982tHoLVA7tpp+u/Yvl/280DP/kmQIdvqqG27pATUH/33EjOBmDWjnNf61uOdRuw5x3UdlDGMPcz2cK1LZb/mS67G1nRvtk2G73KFz//edVu0BNwSEF2qFdoIF2m+aaBTI3JF79H/7IMwVqjHpmLE9tQY39fnO/Em9BtwJ2m+ZaBTLXw69fuVG+qwUdXTfbnfokY92pt+XFoXSyKweY5YUxKLlAR8FD7TbNHRXIbv6tHFXPFah959W+LJxmrK5iLsTaLFO6I+2O8kU6dxVLLpDJae5sPqzqkxlk98RcyGcK9zvXz4LTcwWq791fh1eovrE4zVjdNVSj59LfZNjbnmocLHec3AelFyjc3tS3ToPsHhrmWi3ou8YId/4+qKje/YXLnbs1/aIozma8+sFcDfx956Mx+tn37ipmb3av7+2F4vpbd0F2O94276S/8GeTXqDiw1eLMuUIuw1z7S7WfOd79k46hdi3WEoYYBdPnpHJVKAepgL18PQFev6AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDoTlPhpYBZKVywfEAyly+YB4IEUuHxAPlJCTGhcEiM4VHZhDTjh5ltTRgUPknupKM9qoROAQOfx3FMLeLhiVCBwiNxWoR27qYj1yU4F65KYC9chNY1CP3FSgHrmpiyXKEQtyYkU8kCKXD4gHUuTyAfFAilw+IB5IkcsHxAMpcvmAeCBFLh9IDyyXfBi1SFF0XjZIDKx/Mbta6eEc5S+bd0ZE52WDtMD975tn3P6pwbZcZ2XXtVxYdF42EA8sbPupyrLtWH0tRY4KxAML2w+r8WnX0clS5KggPXC/Wrq1qroX5nvhLWhjl6eaF5sLq/Nty0vcSxyDbP/ZmQJ0dZ4Q5K9inc0sOi8bJAfaAm3sSiijllKIzssG6YGb+X5lV6OJXQCzpcL4SGcUSA803We2PtwNqc+AvGwgHkiRywfEA4t6iL7wZiNFjgrSA8vTvzBIH+76RvDovGyQHHi4i1i7uXeIis7LBsmBjfcRF9j1fBoSnZcNkgMb7yOeIi8bpAc+frLuDhPPywbpgeU6kdOd9PnAsbeIiXnZIDkwbpAWy8sGyYHTIN0XOA3SlwOr9xHTID0skCKXD4gHUuTygbTAyO/FBPOyQWJg5DercnnZID1w+m5+XCBFLh8QD6TI5QPigRS5fEA8kCKXD4gHUuTyAfFAilw+MCDQ/SGuzbj39NF52SA9cDdbb+1Xz90V8s/tXuIUvMJ/HmRn/VyYvOAK5GYGdX66Fp2XDZID7Tnbk78w/cUWKJTmBU6gKlvQpvv7Q1ugx4Ur0FEZX8TsDj8GbS+8F3vZLSh8pji78Lmr/9BxXpTD9Zi8bCAe6HGTiLqnKE4FemK5fCA9MGL6i2BeNkgOjJr+IpeXDZIDp29WewKnb1b7AqdvVnsCp+kvlwOn6S89gdMg3RM4DdJ9gdMgfTlwmv4yMpAilw+IB1Lk8gHxQIpcPpAWuF8tpzFoZCBFLh8QD6TI5QNpgTK30Sl52SAtcCpQT+BUoJ7AqUA9gRG/riuclw3SAp9DC0r73js61gc+gwIhLXt0qA/8+AuExPTRkT5wKtD4QIpcauL49NGR8ZIMucTMCdmjQxM0CXJJqXNexcQQlssHxAMpcvmAeCBFLh8QD6TI5QPigY5t+Qt3XbOp0+SIQDzQsp2tC78KnIYCjfoTApefHRJYlN9Ou6loGgo0Knd0cIpq+YZkc/OwVTiRPCl3dHCKajW/YTOntKC+PpXS5aKNRgdayrLsV5RV8PQXqFrttnM5vDS5RD6CAj213JH4VKC0XCkFOTk4Oss4k5nl8gHxQIpcPiAeSJHLB8QDKXL5gHhgpNxHA6lAacgml1XLq0pJLquWV5WSXFYtryoluaxaXlVKclm1vKqU5LJqeVUpyWXV8qpSksuq5VWlJJdVy6v6jADbgHbANqAdsA1oB2wD2gHbgHbANqAdsA1oB2wD2gHbgHbANqAdsA1oB2wD2gEnbfmH6wcvqDJaIBbkTnCesFpR318EzCgQCzLrdxDOb/iqTqMFYkFm/Q7KE7uwtG6CgJ2dPC8eP/lm4fpctSEBZGRSEW1Bfnby8nEB/wfPqw0JIKKSTDi/S2sPRwuUK+8+Luzj9uah2pBwCgmRdMqL0OBXuSEQlrgOj7vZutqQcAoJkXRcA3hcDB9hGwLl2mL+0Rao3JBwCgmRdHwP6V52OUWgakHPr0DFZvBJNATaY9CmHIMGXyDbQEIknXB++9XIy7wTsFcx8/Pjwq0Fbq9iYUMCiKgkU17ft0M7WUsg3Act/rQIo3bYkAAyMhoox6J6QwLISbGZCtTDVCAKYBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2AbUA7YBvQDtgGtAO2Ae2Amn0TlmJJncIgtsR8P3iqRGcRmqKSE1CzTwXqoS6QXcPSzlQtZ/DuP//aLma5DZPp3Z8Rvq0efRfb+Sf3q7+sxGa7nIBMunHUBbLLoLoJqmEGr59aZadG2flibjqC2V0+ugL5sLn5Z6K2MhPuTkEe2UjKQdq0g93Vfz5f11N53bw6P7lud/VuFxb+3FVrpd6GlWV3s7WLEp3R0QR5ZCNpjkEbzBtTeX0bcc3C7NuvfGXqx9sQ6p68zXhdQx7ZSJoFcpMKqwmqoROVk6HdtOjbonysC2S2XkiBDnd/NK3jqECtgaWcErvxz760FrS9+eVuWU/lPXPW5U+h0TTGoJdQIHuCZgiuZvD6E3bXJtNiXFPa1Y9HV7FnXKAwyMzWtlRurnOYwRtO2N4H2XF554Kqx6P7oOdboBOyXa0HA7aBNlOBepgK9NEBtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrQDtgHtgG1AO2Ab0A7YBrTzK/DzckRBnicXAAAAAElFTkSuQmCC" /><!-- --></p>
+<p>由结果可看出，Rcpp比R实现快，尤其是当N较大时，C++的性能优势会更加明显；
+R较慢，因为纯R的循环和函数调用效率较低。</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
