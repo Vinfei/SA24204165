@@ -16,11 +16,18 @@ using namespace Rcpp;
  //'   - `sigma`: A NumericMatrix representing the standard deviation of the observation distributions (only for normal distribution).
  //' @examples
  //' {
- //' observations <- matrix(runif(100), nrow = 10, ncol = 10)
- //' result <- hmm_em(observations, n_states = 3, dist_type = "normal", max_iter = 50)
- //' print(result)
+ //' set.seed(123)
+ //' n_obs <- 100
+ //' n_features <- 2
+ //' observations <- matrix(rnorm(n_obs * n_features), ncol = n_features)
+ //' n_states <- 3
+ //' result <- hmm_em(observations, n_states, dist_type = "normal", max_iter = 50)
+ //' result$A
+ //' result$pi
+ //' result$mu
+ //' result$sigma
  //' }
- //' @name hmm
+ //' @name hmm_em
  //' @export
  // [[Rcpp::export]]
  List hmm_em(NumericMatrix observations, int n_states, std::string dist_type = "normal", int max_iter = 100) {
@@ -40,11 +47,11 @@ using namespace Rcpp;
      }
    }
    
-   // Random initialization for means and standard deviations
+   // Initialize means and standard deviations with random values
    for (int k = 0; k < n_states; ++k) {
      for (int d = 0; d < n_features; ++d) {
        mu(k, d) = R::runif(0, 10);
-       sigma(k, d) = R::runif(1, 5);
+       sigma(k, d) = std::max(R::runif(1, 5), 1e-3); // Avoid near-zero standard deviation
      }
    }
    
@@ -57,20 +64,26 @@ using namespace Rcpp;
      for (int t = 0; t < n_obs; ++t) {
        double row_sum = 0.0;
        for (int k = 0; k < n_states; ++k) {
-         double likelihood = 1.0;
+         double log_likelihood = 0.0;
          for (int d = 0; d < n_features; ++d) {
            if (dist_type == "poisson") {
-             likelihood *= R::dpois(observations(t, d), mu(k, d), false);
+             log_likelihood += R::dpois(observations(t, d), mu(k, d), true); // Log-likelihood
            } else if (dist_type == "normal") {
-             likelihood *= R::dnorm(observations(t, d), mu(k, d), sigma(k, d), false);
+             log_likelihood += R::dnorm(observations(t, d), mu(k, d), sigma(k, d), true); // Log-likelihood
            }
          }
-         gamma(t, k) = pi[k] * likelihood;
+         gamma(t, k) = pi[k] * std::exp(log_likelihood);
          row_sum += gamma(t, k);
        }
-       // Normalize
-       for (int k = 0; k < n_states; ++k) {
-         gamma(t, k) /= row_sum;
+       // Normalize gamma values
+       if (row_sum > 0) {
+         for (int k = 0; k < n_states; ++k) {
+           gamma(t, k) /= row_sum;
+         }
+       } else {
+         for (int k = 0; k < n_states; ++k) {
+           gamma(t, k) = 1.0 / n_states; // Fallback for numerical issues
+         }
        }
      }
      
@@ -88,7 +101,11 @@ using namespace Rcpp;
            num += gamma(t, i) * gamma(t + 1, j);
            denom += gamma(t, i);
          }
-         A(i, j) = num / denom;
+         if (denom > 0) {
+           A(i, j) = num / denom;
+         } else {
+           A(i, j) = 1.0 / n_states; // Avoid division by zero
+         }
        }
      }
      
@@ -100,13 +117,21 @@ using namespace Rcpp;
            num_mu += gamma(t, k) * observations(t, d);
            denom_mu += gamma(t, k);
          }
-         mu(k, d) = num_mu / denom_mu;
+         if (denom_mu > 0) {
+           mu(k, d) = num_mu / denom_mu;
+         } else {
+           mu(k, d) = R::runif(0, 10); // Default mean value
+         }
          
          if (dist_type == "normal") {
            for (int t = 0; t < n_obs; ++t) {
              num_sigma += gamma(t, k) * std::pow(observations(t, d) - mu(k, d), 2);
            }
-           sigma(k, d) = std::sqrt(num_sigma / denom_mu);
+           if (denom_mu > 0) {
+             sigma(k, d) = std::sqrt(num_sigma / denom_mu);
+           } else {
+             sigma(k, d) = std::max(R::runif(1, 5), 1e-3); // Default std deviation
+           }
          }
        }
      }

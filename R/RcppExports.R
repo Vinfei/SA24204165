@@ -2,8 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title Hidden Markov Model Parameter Estimation
-#' @name name
-
+#' @name hmm_em
 NULL
 
 hmm_em <- function(observations, n_states, dist_type = "normal", max_iter = 100L) {

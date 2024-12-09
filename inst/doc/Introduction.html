@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="吴鹏飞" />
+
+<meta name="date" content="2023-12-09" />
+
+<title>Introduction</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+<h4 class="author">吴鹏飞</h4>
+<h4 class="date">2023-12-09</h4>
+
+
+
+<div id="一.理论背景介绍高维回归lasso-和置信区间" class="section level2">
+<h2>一.理论背景介绍：高维回归、LASSO 和置信区间</h2>
+<div id="高维回归问题" class="section level3">
+<h3>1. <strong>高维回归问题</strong></h3>
+<p>高维回归指的是数据维度 <span class="math inline">\(p\)</span>
+大于甚至远大于样本数 <span class="math inline">\(n\)</span>
+的回归问题。在这种场景下，传统的线性回归会遇到以下困难： -
+<strong>多重共线性</strong>：协变量之间可能高度相关，导致回归系数估计不稳定。
+- <strong>过拟合</strong>：自由度过高，模型会过度拟合噪声。 -
+<strong>无法唯一解</strong>：当 <span class="math inline">\(p &gt;
+n\)</span> 时，设计矩阵 <span class="math inline">\(X\)</span>
+的列不可逆，回归方程没有唯一解。</p>
+</div>
+<div id="lasso-回归" class="section level3">
+<h3>2. <strong>LASSO 回归</strong></h3>
+<p>LASSO（Least Absolute Shrinkage and Selection
+Operator）是一种常用的高维回归方法，目标是通过正则化约束来克服上述问题。其目标函数为：
+<span class="math display">\[
+\hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \|y - X\beta\|_2^2 +
+\lambda \|\beta\|_1 \right),
+\]</span> 其中： - <span class="math inline">\(\|y -
+X\beta\|_2^2\)</span>：残差平方和，衡量拟合优度。 - <span class="math inline">\(\|\beta\|_1 = \sum_{j=1}^p
+|\beta_j|\)</span>：LASSO 正则项，通过惩罚系数 <span class="math inline">\(\lambda\)</span> 控制稀疏性。</p>
+<p>LASSO 的优点： - 自动进行变量选择：能将不重要的回归系数收缩为零。 -
+适用于高维数据：能稳定处理 <span class="math inline">\(p \gg n\)</span>
+的场景。</p>
+<p>LASSO
+的一个缺点是它引入了估计偏差（bias），需要后续调整以获得无偏估计。</p>
+</div>
+<div id="置信区间与无偏估计" class="section level3">
+<h3>3. <strong>置信区间与无偏估计</strong></h3>
+<p>在高维回归中，为了进行更可靠的统计推断，需要对回归系数估计量构造置信区间。挑战包括：
+- <strong>噪声估计</strong>：需要准确估计模型中的噪声方差。 -
+<strong>协方差矩阵的求解</strong>：需要高效地逆解协方差矩阵或其稀疏表示。</p>
+<p>本代码通过结合稀疏矩阵逆解法（<code>compute_inverse</code>）和无偏校正方法，计算回归系数的无偏估计以及对应的置信区间，提供对高维数据的稳健推断。</p>
+</div>
+<div id="代码中实现的主要功能" class="section level3">
+<h3>4. <strong>代码中实现的主要功能</strong></h3>
+<p>代码中的功能模块体现了上述理论的实际实现，包括：</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>SSLASSO</strong>：main函数，进行 LASSO
+回归、无偏估计修正，并生成置信区间。</p></li>
+<li><p><strong>稀疏矩阵求逆</strong>：通过约束优化（<code>solve_one_row</code>
+和
+<code>compute_inverse</code>），高效计算协方差矩阵的稀疏逆矩阵。</p></li>
+<li><p><strong>噪声估计</strong>：通过残差和协方差矩阵估计噪声的标准差，辅助置信区间的计算。</p></li>
+<li><p><strong>LASSO 求解</strong>：基于 <code>glmnet</code> 的 LASSO
+实现，支持灵活的正则化参数选择。</p></li>
+<li><p><strong>soft_threshold</strong>：实现软阈值运算，对输入值执行稀疏性约束。将大于正阈值的值减少阈值，小于负阈值的值增加阈值，绝对值小于阈值的值置为
+0。用于 LASSO 和其他稀疏优化问题，帮助实现系数的稀疏化。</p></li>
+<li><p><strong>solve_one_row</strong>：在稀疏矩阵的逆解过程中，逐行求解约束优化问题。通过迭代法解决协方差矩阵中每一行的优化问题，保证解的稀疏性。将矩阵逆解问题分解为更小的计算单元，提高高维矩阵稀疏逆解的效率和准确性。</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(bootstrap)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(DAAG)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:DAAG&#39;:
+## 
+##     hills</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">library</span>(truncnorm)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code></pre></div>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loaded glmnet 4.1-8</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(expm)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;expm&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     expm</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(flare)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lattice&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:boot&#39;:
+## 
+##     melanoma</code></pre>
+<pre><code>## Loading required package: igraph</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co">#&#39; @title High-dimensional Regression with LASSO and Confidence Intervals</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co">#&#39; @description Implements a high-dimensional regression procedure using LASSO, computes confidence intervals, and provides unbiased estimates.</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co">#&#39; @param X A numeric matrix of predictors.</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">#&#39; @param y A numeric vector of response values.</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co">#&#39; @param alpha Significance level for confidence intervals (default: 0.05).</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#&#39; @param lambda Regularization parameter for LASSO (default: NULL, calculated internally).</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#&#39; @param max_iter Maximum number of iterations for optimization algorithms (default: 50).</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co">#&#39; @param tol Convergence tolerance for optimization (default: 1e-2).</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co">#&#39; @param verbose Logical; if TRUE, displays progress (default: TRUE).</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#&#39; @return A list containing:</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="co">#&#39;   \item{estimates}{LASSO regression coefficients.}</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co">#&#39;   \item{unbiased_estimates}{Unbiased regression coefficients.}</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="co">#&#39;   \item{confidence_intervals}{Matrix of confidence intervals for the coefficients.}</span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="co">#&#39;   \item{noise_sd}{Estimated standard deviation of noise.}</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="co">#&#39; {</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a><span class="co">#&#39; set.seed(123)</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a><span class="co">#&#39; n &lt;- 100</span></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a><span class="co">#&#39; p &lt;- 50</span></span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="co">#&#39; X &lt;- matrix(rnorm(n * p), n, p)</span></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a><span class="co">#&#39; beta_true &lt;- c(rep(2, 5), rep(0, p - 5))</span></span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a><span class="co">#&#39; y &lt;- X %*% beta_true + rnorm(n)</span></span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a><span class="co">#&#39; result &lt;- SSLASSO(X, y, alpha = 0.05)</span></span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a><span class="co">#&#39; print(result$estimates)</span></span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a><span class="co">#&#39; print(result$unbiased_estimates)</span></span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a><span class="co">#&#39; print(result$confidence_intervals)</span></span>
+<span id="cb18-27"><a href="#cb18-27" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-28"><a href="#cb18-28" tabindex="-1"></a><span class="co">#&#39; @name SSLASSO</span></span>
+<span id="cb18-29"><a href="#cb18-29" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-30"><a href="#cb18-30" tabindex="-1"></a>SSLASSO <span class="ot">&lt;-</span> <span class="cf">function</span>(X, y, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">lambda =</span> <span class="cn">NULL</span>, <span class="at">max_iter =</span> <span class="dv">50</span>, <span class="at">tol =</span> <span class="fl">1e-2</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb18-31"><a href="#cb18-31" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb18-32"><a href="#cb18-32" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
+<span id="cb18-33"><a href="#cb18-33" tabindex="-1"></a>  scaled_X <span class="ot">&lt;-</span> <span class="fu">scale</span>(X, <span class="at">scale =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" tabindex="-1"></a>  design_norm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">colSums</span>(scaled_X<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n)</span>
+<span id="cb18-35"><a href="#cb18-35" tabindex="-1"></a>  scaled_X <span class="ot">&lt;-</span> <span class="fu">sweep</span>(scaled_X, <span class="dv">2</span>, design_norm, <span class="st">`</span><span class="at">/</span><span class="st">`</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" tabindex="-1"></a>  </span>
+<span id="cb18-37"><a href="#cb18-37" tabindex="-1"></a>  <span class="co"># Get Lasso regression coefficients</span></span>
+<span id="cb18-38"><a href="#cb18-38" tabindex="-1"></a>  lasso_fit <span class="ot">&lt;-</span> <span class="fu">Lasso</span>(scaled_X, y, <span class="at">lambda =</span> lambda)</span>
+<span id="cb18-39"><a href="#cb18-39" tabindex="-1"></a>  </span>
+<span id="cb18-40"><a href="#cb18-40" tabindex="-1"></a>  <span class="co"># Ensure lasso_fit is a vector with length equal to p</span></span>
+<span id="cb18-41"><a href="#cb18-41" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(lasso_fit) <span class="sc">!=</span> p) {</span>
+<span id="cb18-42"><a href="#cb18-42" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Lasso() output should be a vector of length p.&quot;</span>)</span>
+<span id="cb18-43"><a href="#cb18-43" tabindex="-1"></a>  }</span>
+<span id="cb18-44"><a href="#cb18-44" tabindex="-1"></a>  </span>
+<span id="cb18-45"><a href="#cb18-45" tabindex="-1"></a>  cov_matrix <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(scaled_X) <span class="sc">/</span> n</span>
+<span id="cb18-46"><a href="#cb18-46" tabindex="-1"></a>  inverse_matrix <span class="ot">&lt;-</span> <span class="fu">compute_inverse</span>(cov_matrix, n, <span class="at">max_iter =</span> max_iter, <span class="at">tol =</span> tol, <span class="at">verbose =</span> verbose)</span>
+<span id="cb18-47"><a href="#cb18-47" tabindex="-1"></a>  unbiased_estimates <span class="ot">&lt;-</span> lasso_fit <span class="sc">+</span> inverse_matrix <span class="sc">%*%</span> <span class="fu">crossprod</span>(scaled_X, y <span class="sc">-</span> scaled_X <span class="sc">%*%</span> lasso_fit) <span class="sc">/</span> n</span>
+<span id="cb18-48"><a href="#cb18-48" tabindex="-1"></a>  </span>
+<span id="cb18-49"><a href="#cb18-49" tabindex="-1"></a>  weight_matrix <span class="ot">&lt;-</span> inverse_matrix <span class="sc">%*%</span> cov_matrix <span class="sc">%*%</span> inverse_matrix</span>
+<span id="cb18-50"><a href="#cb18-50" tabindex="-1"></a>  noise_est <span class="ot">&lt;-</span> <span class="fu">Noise</span>(unbiased_estimates, weight_matrix, n)</span>
+<span id="cb18-51"><a href="#cb18-51" tabindex="-1"></a>  </span>
+<span id="cb18-52"><a href="#cb18-52" tabindex="-1"></a>  interval_half_width <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> noise_est<span class="sc">$</span>noise_sd <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(weight_matrix)) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb18-53"><a href="#cb18-53" tabindex="-1"></a>  </span>
+<span id="cb18-54"><a href="#cb18-54" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb18-55"><a href="#cb18-55" tabindex="-1"></a>    <span class="at">estimates =</span> lasso_fit,</span>
+<span id="cb18-56"><a href="#cb18-56" tabindex="-1"></a>    <span class="at">unbiased_estimates =</span> unbiased_estimates,</span>
+<span id="cb18-57"><a href="#cb18-57" tabindex="-1"></a>    <span class="at">confidence_intervals =</span> <span class="fu">cbind</span>(</span>
+<span id="cb18-58"><a href="#cb18-58" tabindex="-1"></a>      unbiased_estimates <span class="sc">-</span> interval_half_width,</span>
+<span id="cb18-59"><a href="#cb18-59" tabindex="-1"></a>      unbiased_estimates <span class="sc">+</span> interval_half_width</span>
+<span id="cb18-60"><a href="#cb18-60" tabindex="-1"></a>    ),</span>
+<span id="cb18-61"><a href="#cb18-61" tabindex="-1"></a>    <span class="at">noise_sd =</span> noise_est<span class="sc">$</span>noise_sd</span>
+<span id="cb18-62"><a href="#cb18-62" tabindex="-1"></a>  )</span>
+<span id="cb18-63"><a href="#cb18-63" tabindex="-1"></a>}</span>
+<span id="cb18-64"><a href="#cb18-64" tabindex="-1"></a></span>
+<span id="cb18-65"><a href="#cb18-65" tabindex="-1"></a><span class="co">#&#39; @title Soft Threshold Function</span></span>
+<span id="cb18-66"><a href="#cb18-66" tabindex="-1"></a><span class="co">#&#39; @description Applies a soft-thresholding operation to a given value.</span></span>
+<span id="cb18-67"><a href="#cb18-67" tabindex="-1"></a><span class="co">#&#39; @param value Numeric; the input value to threshold.</span></span>
+<span id="cb18-68"><a href="#cb18-68" tabindex="-1"></a><span class="co">#&#39; @param threshold Numeric; the threshold value.</span></span>
+<span id="cb18-69"><a href="#cb18-69" tabindex="-1"></a><span class="co">#&#39; @return A numeric value after applying the soft-threshold.</span></span>
+<span id="cb18-70"><a href="#cb18-70" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb18-71"><a href="#cb18-71" tabindex="-1"></a><span class="co">#&#39; {</span></span>
+<span id="cb18-72"><a href="#cb18-72" tabindex="-1"></a><span class="co">#&#39; result &lt;- soft_threshold(3.5, 2)</span></span>
+<span id="cb18-73"><a href="#cb18-73" tabindex="-1"></a><span class="co">#&#39; print(result)</span></span>
+<span id="cb18-74"><a href="#cb18-74" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-75"><a href="#cb18-75" tabindex="-1"></a><span class="co">#&#39; @name soft_threshold</span></span>
+<span id="cb18-76"><a href="#cb18-76" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-77"><a href="#cb18-77" tabindex="-1"></a>soft_threshold <span class="ot">&lt;-</span> <span class="cf">function</span>(value, threshold) {</span>
+<span id="cb18-78"><a href="#cb18-78" tabindex="-1"></a>  <span class="cf">if</span> (value <span class="sc">&gt;</span> threshold) {</span>
+<span id="cb18-79"><a href="#cb18-79" tabindex="-1"></a>    <span class="fu">return</span>(value <span class="sc">-</span> threshold)</span>
+<span id="cb18-80"><a href="#cb18-80" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (value <span class="sc">&lt;</span> <span class="sc">-</span>threshold) {</span>
+<span id="cb18-81"><a href="#cb18-81" tabindex="-1"></a>    <span class="fu">return</span>(value <span class="sc">+</span> threshold)</span>
+<span id="cb18-82"><a href="#cb18-82" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb18-83"><a href="#cb18-83" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb18-84"><a href="#cb18-84" tabindex="-1"></a>  }</span>
+<span id="cb18-85"><a href="#cb18-85" tabindex="-1"></a>}</span>
+<span id="cb18-86"><a href="#cb18-86" tabindex="-1"></a></span>
+<span id="cb18-87"><a href="#cb18-87" tabindex="-1"></a><span class="co">#&#39; @title Solve One Row for Constrained Optimization</span></span>
+<span id="cb18-88"><a href="#cb18-88" tabindex="-1"></a><span class="co">#&#39; @description Solves a single row of a covariance matrix for constrained optimization in high-dimensional regression.</span></span>
+<span id="cb18-89"><a href="#cb18-89" tabindex="-1"></a><span class="co">#&#39; @param cov_matrix Numeric matrix; the covariance matrix.</span></span>
+<span id="cb18-90"><a href="#cb18-90" tabindex="-1"></a><span class="co">#&#39; @param row_idx Integer; index of the row to solve.</span></span>
+<span id="cb18-91"><a href="#cb18-91" tabindex="-1"></a><span class="co">#&#39; @param constraint Numeric; the constraint parameter.</span></span>
+<span id="cb18-92"><a href="#cb18-92" tabindex="-1"></a><span class="co">#&#39; @param max_iter Integer; maximum number of iterations (default: 50).</span></span>
+<span id="cb18-93"><a href="#cb18-93" tabindex="-1"></a><span class="co">#&#39; @param tol Numeric; convergence tolerance (default: 1e-2).</span></span>
+<span id="cb18-94"><a href="#cb18-94" tabindex="-1"></a><span class="co">#&#39; @return A list containing:</span></span>
+<span id="cb18-95"><a href="#cb18-95" tabindex="-1"></a><span class="co">#&#39;   \item{solution}{The solution vector for the row.}</span></span>
+<span id="cb18-96"><a href="#cb18-96" tabindex="-1"></a><span class="co">#&#39;   \item{iterations}{Number of iterations performed.}</span></span>
+<span id="cb18-97"><a href="#cb18-97" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb18-98"><a href="#cb18-98" tabindex="-1"></a><span class="co">#&#39; {</span></span>
+<span id="cb18-99"><a href="#cb18-99" tabindex="-1"></a><span class="co">#&#39; cov_matrix &lt;- matrix(c(4, 2, 2, 3), nrow = 2)</span></span>
+<span id="cb18-100"><a href="#cb18-100" tabindex="-1"></a><span class="co">#&#39; result &lt;- solve_one_row(cov_matrix, 1, 0.1)</span></span>
+<span id="cb18-101"><a href="#cb18-101" tabindex="-1"></a><span class="co">#&#39; print(result)</span></span>
+<span id="cb18-102"><a href="#cb18-102" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-103"><a href="#cb18-103" tabindex="-1"></a><span class="co">#&#39; @name solve_one_row</span></span>
+<span id="cb18-104"><a href="#cb18-104" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-105"><a href="#cb18-105" tabindex="-1"></a>solve_one_row <span class="ot">&lt;-</span> <span class="cf">function</span>(cov_matrix, row_idx, constraint, <span class="at">max_iter =</span> <span class="dv">50</span>, <span class="at">tol =</span> <span class="fl">1e-2</span>) {</span>
+<span id="cb18-106"><a href="#cb18-106" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cov_matrix)</span>
+<span id="cb18-107"><a href="#cb18-107" tabindex="-1"></a>  rho <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">abs</span>(cov_matrix[row_idx, <span class="sc">-</span>row_idx])) <span class="sc">/</span> cov_matrix[row_idx, row_idx]</span>
+<span id="cb18-108"><a href="#cb18-108" tabindex="-1"></a>  initial_constraint <span class="ot">&lt;-</span> rho <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> rho)</span>
+<span id="cb18-109"><a href="#cb18-109" tabindex="-1"></a>  coeff <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb18-110"><a href="#cb18-110" tabindex="-1"></a>  </span>
+<span id="cb18-111"><a href="#cb18-111" tabindex="-1"></a>  <span class="cf">if</span> (constraint <span class="sc">&gt;=</span> initial_constraint) {</span>
+<span id="cb18-112"><a href="#cb18-112" tabindex="-1"></a>    coeff[row_idx] <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> initial_constraint) <span class="sc">/</span> cov_matrix[row_idx, row_idx]</span>
+<span id="cb18-113"><a href="#cb18-113" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">solution =</span> coeff, <span class="at">iterations =</span> <span class="dv">0</span>))</span>
+<span id="cb18-114"><a href="#cb18-114" tabindex="-1"></a>  }</span>
+<span id="cb18-115"><a href="#cb18-115" tabindex="-1"></a>  </span>
+<span id="cb18-116"><a href="#cb18-116" tabindex="-1"></a>  residual <span class="ot">&lt;-</span> <span class="sc">-</span>cov_matrix <span class="sc">%*%</span> coeff</span>
+<span id="cb18-117"><a href="#cb18-117" tabindex="-1"></a>  residual[row_idx] <span class="ot">&lt;-</span> residual[row_idx] <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb18-118"><a href="#cb18-118" tabindex="-1"></a>  iter <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-119"><a href="#cb18-119" tabindex="-1"></a>  prev_coeff <span class="ot">&lt;-</span> coeff</span>
+<span id="cb18-120"><a href="#cb18-120" tabindex="-1"></a>  </span>
+<span id="cb18-121"><a href="#cb18-121" tabindex="-1"></a>  <span class="cf">while</span> (iter <span class="sc">&lt;=</span> max_iter) {</span>
+<span id="cb18-122"><a href="#cb18-122" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb18-123"><a href="#cb18-123" tabindex="-1"></a>      residual[j] <span class="ot">&lt;-</span> residual[j] <span class="sc">+</span> coeff[j] <span class="sc">*</span> cov_matrix[j, j]</span>
+<span id="cb18-124"><a href="#cb18-124" tabindex="-1"></a>      coeff[j] <span class="ot">&lt;-</span> <span class="fu">soft_threshold</span>(residual[j], constraint) <span class="sc">/</span> cov_matrix[j, j]</span>
+<span id="cb18-125"><a href="#cb18-125" tabindex="-1"></a>      residual[j] <span class="ot">&lt;-</span> residual[j] <span class="sc">-</span> coeff[j] <span class="sc">*</span> cov_matrix[j, j]</span>
+<span id="cb18-126"><a href="#cb18-126" tabindex="-1"></a>    }</span>
+<span id="cb18-127"><a href="#cb18-127" tabindex="-1"></a>    </span>
+<span id="cb18-128"><a href="#cb18-128" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">sqrt</span>(<span class="fu">sum</span>((coeff <span class="sc">-</span> prev_coeff)<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">&lt;</span> tol <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(coeff<span class="sc">^</span><span class="dv">2</span>))) {</span>
+<span id="cb18-129"><a href="#cb18-129" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb18-130"><a href="#cb18-130" tabindex="-1"></a>    }</span>
+<span id="cb18-131"><a href="#cb18-131" tabindex="-1"></a>    </span>
+<span id="cb18-132"><a href="#cb18-132" tabindex="-1"></a>    prev_coeff <span class="ot">&lt;-</span> coeff</span>
+<span id="cb18-133"><a href="#cb18-133" tabindex="-1"></a>    iter <span class="ot">&lt;-</span> iter <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb18-134"><a href="#cb18-134" tabindex="-1"></a>  }</span>
+<span id="cb18-135"><a href="#cb18-135" tabindex="-1"></a>  </span>
+<span id="cb18-136"><a href="#cb18-136" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">solution =</span> coeff, <span class="at">iterations =</span> iter)</span>
+<span id="cb18-137"><a href="#cb18-137" tabindex="-1"></a>}</span>
+<span id="cb18-138"><a href="#cb18-138" tabindex="-1"></a></span>
+<span id="cb18-139"><a href="#cb18-139" tabindex="-1"></a><span class="co">#&#39; @title Compute Sparse Inverse Matrix</span></span>
+<span id="cb18-140"><a href="#cb18-140" tabindex="-1"></a><span class="co">#&#39; @description Computes the sparse inverse of a covariance matrix using row-wise constrained optimization.</span></span>
+<span id="cb18-141"><a href="#cb18-141" tabindex="-1"></a><span class="co">#&#39; @param cov_matrix Numeric matrix; the covariance matrix.</span></span>
+<span id="cb18-142"><a href="#cb18-142" tabindex="-1"></a><span class="co">#&#39; @param sample_size Integer; the number of samples.</span></span>
+<span id="cb18-143"><a href="#cb18-143" tabindex="-1"></a><span class="co">#&#39; @param constraint Numeric; constraint parameter (default: NULL, calculated internally).</span></span>
+<span id="cb18-144"><a href="#cb18-144" tabindex="-1"></a><span class="co">#&#39; @param max_iter Integer; maximum number of iterations (default: 50).</span></span>
+<span id="cb18-145"><a href="#cb18-145" tabindex="-1"></a><span class="co">#&#39; @param tol Numeric; convergence tolerance (default: 1e-2).</span></span>
+<span id="cb18-146"><a href="#cb18-146" tabindex="-1"></a><span class="co">#&#39; @param verbose Logical; if TRUE, displays progress (default: TRUE).</span></span>
+<span id="cb18-147"><a href="#cb18-147" tabindex="-1"></a><span class="co">#&#39; @return A numeric matrix representing the sparse inverse of the input matrix.</span></span>
+<span id="cb18-148"><a href="#cb18-148" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb18-149"><a href="#cb18-149" tabindex="-1"></a><span class="co">#&#39; {</span></span>
+<span id="cb18-150"><a href="#cb18-150" tabindex="-1"></a><span class="co">#&#39; cov_matrix &lt;- matrix(c(4, 2, 2, 3), nrow = 2)</span></span>
+<span id="cb18-151"><a href="#cb18-151" tabindex="-1"></a><span class="co">#&#39; result &lt;- compute_inverse(cov_matrix, sample_size = 100)</span></span>
+<span id="cb18-152"><a href="#cb18-152" tabindex="-1"></a><span class="co">#&#39; print(result)</span></span>
+<span id="cb18-153"><a href="#cb18-153" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-154"><a href="#cb18-154" tabindex="-1"></a><span class="co">#&#39; @name compute_inverse</span></span>
+<span id="cb18-155"><a href="#cb18-155" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-156"><a href="#cb18-156" tabindex="-1"></a>compute_inverse <span class="ot">&lt;-</span> <span class="cf">function</span>(cov_matrix, sample_size, <span class="at">constraint =</span> <span class="cn">NULL</span>, <span class="at">max_iter =</span> <span class="dv">50</span>, <span class="at">tol =</span> <span class="fl">1e-2</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb18-157"><a href="#cb18-157" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cov_matrix)</span>
+<span id="cb18-158"><a href="#cb18-158" tabindex="-1"></a>  inverse_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> p, <span class="at">ncol =</span> p)</span>
+<span id="cb18-159"><a href="#cb18-159" tabindex="-1"></a>  </span>
+<span id="cb18-160"><a href="#cb18-160" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(constraint)) {</span>
+<span id="cb18-161"><a href="#cb18-161" tabindex="-1"></a>    constraint <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.1</span> <span class="sc">/</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(sample_size)</span>
+<span id="cb18-162"><a href="#cb18-162" tabindex="-1"></a>  }</span>
+<span id="cb18-163"><a href="#cb18-163" tabindex="-1"></a>  </span>
+<span id="cb18-164"><a href="#cb18-164" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p) {</span>
+<span id="cb18-165"><a href="#cb18-165" tabindex="-1"></a>    <span class="cf">if</span> (verbose <span class="sc">&amp;&amp;</span> i <span class="sc">%%</span> (p <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb18-166"><a href="#cb18-166" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%d%% completed</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">round</span>(i <span class="sc">/</span> p <span class="sc">*</span> <span class="dv">100</span>)))</span>
+<span id="cb18-167"><a href="#cb18-167" tabindex="-1"></a>    }</span>
+<span id="cb18-168"><a href="#cb18-168" tabindex="-1"></a>    </span>
+<span id="cb18-169"><a href="#cb18-169" tabindex="-1"></a>    row_solution <span class="ot">&lt;-</span> <span class="fu">solve_one_row</span>(cov_matrix, i, constraint, max_iter, tol)</span>
+<span id="cb18-170"><a href="#cb18-170" tabindex="-1"></a>    inverse_matrix[i, ] <span class="ot">&lt;-</span> row_solution<span class="sc">$</span>solution</span>
+<span id="cb18-171"><a href="#cb18-171" tabindex="-1"></a>  }</span>
+<span id="cb18-172"><a href="#cb18-172" tabindex="-1"></a>  </span>
+<span id="cb18-173"><a href="#cb18-173" tabindex="-1"></a>  inverse_matrix</span>
+<span id="cb18-174"><a href="#cb18-174" tabindex="-1"></a>}</span>
+<span id="cb18-175"><a href="#cb18-175" tabindex="-1"></a></span>
+<span id="cb18-176"><a href="#cb18-176" tabindex="-1"></a><span class="co">#&#39; @title Fit LASSO Model</span></span>
+<span id="cb18-177"><a href="#cb18-177" tabindex="-1"></a><span class="co">#&#39; @description Fits a LASSO regression model using either glmnet or square-root Lasso.</span></span>
+<span id="cb18-178"><a href="#cb18-178" tabindex="-1"></a><span class="co">#&#39; @param X A numeric matrix of predictors.</span></span>
+<span id="cb18-179"><a href="#cb18-179" tabindex="-1"></a><span class="co">#&#39; @param y A numeric vector of response values.</span></span>
+<span id="cb18-180"><a href="#cb18-180" tabindex="-1"></a><span class="co">#&#39; @param lambda Regularization parameter for LASSO (default: NULL).</span></span>
+<span id="cb18-181"><a href="#cb18-181" tabindex="-1"></a><span class="co">#&#39; @param intercept Logical; whether to include an intercept in the model (default: TRUE).</span></span>
+<span id="cb18-182"><a href="#cb18-182" tabindex="-1"></a><span class="co">#&#39; @return A numeric vector of LASSO regression coefficients.</span></span>
+<span id="cb18-183"><a href="#cb18-183" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb18-184"><a href="#cb18-184" tabindex="-1"></a><span class="co">#&#39; {</span></span>
+<span id="cb18-185"><a href="#cb18-185" tabindex="-1"></a><span class="co">#&#39; X &lt;- matrix(rnorm(100 * 10), nrow = 100)</span></span>
+<span id="cb18-186"><a href="#cb18-186" tabindex="-1"></a><span class="co">#&#39; y &lt;- rnorm(100)</span></span>
+<span id="cb18-187"><a href="#cb18-187" tabindex="-1"></a><span class="co">#&#39; result &lt;- Lasso(X, y)</span></span>
+<span id="cb18-188"><a href="#cb18-188" tabindex="-1"></a><span class="co">#&#39; print(result)</span></span>
+<span id="cb18-189"><a href="#cb18-189" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb18-190"><a href="#cb18-190" tabindex="-1"></a><span class="co">#&#39; @name Lasso</span></span>
+<span id="cb18-191"><a href="#cb18-191" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-192"><a href="#cb18-192" tabindex="-1"></a>Lasso <span class="ot">&lt;-</span> <span class="cf">function</span>(X, y, <span class="at">lambda =</span> <span class="cn">NULL</span>, <span class="at">intercept =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb18-193"><a href="#cb18-193" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
+<span id="cb18-194"><a href="#cb18-194" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb18-195"><a href="#cb18-195" tabindex="-1"></a></span>
+<span id="cb18-196"><a href="#cb18-196" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(lambda)) {</span>
+<span id="cb18-197"><a href="#cb18-197" tabindex="-1"></a>    lambda <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.1</span> <span class="sc">/</span> p)) <span class="sc">/</span> n)</span>
+<span id="cb18-198"><a href="#cb18-198" tabindex="-1"></a>  }</span>
+<span id="cb18-199"><a href="#cb18-199" tabindex="-1"></a></span>
+<span id="cb18-200"><a href="#cb18-200" tabindex="-1"></a>  outLas <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">intercept =</span> intercept, <span class="at">lambda =</span> lambda)</span>
+<span id="cb18-201"><a href="#cb18-201" tabindex="-1"></a>  </span>
+<span id="cb18-202"><a href="#cb18-202" tabindex="-1"></a>  <span class="cf">if</span> (intercept) {</span>
+<span id="cb18-203"><a href="#cb18-203" tabindex="-1"></a>    coef_out <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">coef</span>(outLas, <span class="at">s =</span> lambda))</span>
+<span id="cb18-204"><a href="#cb18-204" tabindex="-1"></a>    <span class="fu">return</span>(coef_out[<span class="sc">-</span><span class="dv">1</span>])  </span>
+<span id="cb18-205"><a href="#cb18-205" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb18-206"><a href="#cb18-206" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">as.vector</span>(<span class="fu">coef</span>(outLas, <span class="at">s =</span> lambda))[<span class="sc">-</span><span class="dv">1</span>])  </span>
+<span id="cb18-207"><a href="#cb18-207" tabindex="-1"></a>  }</span>
+<span id="cb18-208"><a href="#cb18-208" tabindex="-1"></a>}</span>
+<span id="cb18-209"><a href="#cb18-209" tabindex="-1"></a></span>
+<span id="cb18-210"><a href="#cb18-210" tabindex="-1"></a><span class="co">#&#39; @title Estimate Noise Standard Deviation</span></span>
+<span id="cb18-211"><a href="#cb18-211" tabindex="-1"></a><span class="co">#&#39; @description Estimates the noise standard deviation using the residuals.</span></span>
+<span id="cb18-212"><a href="#cb18-212" tabindex="-1"></a><span class="co">#&#39; @param yh Numeric vector; the predicted values or regression coefficients.</span></span>
+<span id="cb18-213"><a href="#cb18-213" tabindex="-1"></a><span class="co">#&#39; @param A Numeric matrix; the covariance matrix (or similar matrix).</span></span>
+<span id="cb18-214"><a href="#cb18-214" tabindex="-1"></a><span class="co">#&#39; @param n Integer; the number of samples.</span></span>
+<span id="cb18-215"><a href="#cb18-215" tabindex="-1"></a><span class="co">#&#39; @return A list containing:</span></span>
+<span id="cb18-216"><a href="#cb18-216" tabindex="-1"></a><span class="co">#&#39;   \item{noise_sd}{Estimated noise standard deviation.}</span></span>
+<span id="cb18-217"><a href="#cb18-217" tabindex="-1"></a><span class="co">#&#39;   \item{nz}{Number of non-zero coefficients or significant coefficients.}</span></span>
+<span id="cb18-218"><a href="#cb18-218" tabindex="-1"></a><span class="co">#&#39; @name Noise</span></span>
+<span id="cb18-219"><a href="#cb18-219" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb18-220"><a href="#cb18-220" tabindex="-1"></a>Noise <span class="ot">&lt;-</span> <span class="cf">function</span>(yh, A, n) {</span>
+<span id="cb18-221"><a href="#cb18-221" tabindex="-1"></a>  ynorm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(n) <span class="sc">*</span> (yh <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(A)))</span>
+<span id="cb18-222"><a href="#cb18-222" tabindex="-1"></a>  sd_hat0 <span class="ot">&lt;-</span> <span class="fu">mad</span>(ynorm)</span>
+<span id="cb18-223"><a href="#cb18-223" tabindex="-1"></a>  </span>
+<span id="cb18-224"><a href="#cb18-224" tabindex="-1"></a>  zeros <span class="ot">&lt;-</span> (<span class="fu">abs</span>(ynorm) <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">*</span> sd_hat0)</span>
+<span id="cb18-225"><a href="#cb18-225" tabindex="-1"></a>  y2norm <span class="ot">&lt;-</span> <span class="fu">sum</span>(yh[zeros]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-226"><a href="#cb18-226" tabindex="-1"></a>  Atrace <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">diag</span>(A)[zeros])</span>
+<span id="cb18-227"><a href="#cb18-227" tabindex="-1"></a>  sd_hat1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> y2norm <span class="sc">/</span> Atrace)</span>
+<span id="cb18-228"><a href="#cb18-228" tabindex="-1"></a>  </span>
+<span id="cb18-229"><a href="#cb18-229" tabindex="-1"></a>  ratio <span class="ot">&lt;-</span> sd_hat0 <span class="sc">/</span> sd_hat1</span>
+<span id="cb18-230"><a href="#cb18-230" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">max</span>(ratio, <span class="dv">1</span> <span class="sc">/</span> ratio) <span class="sc">&gt;</span> <span class="dv">2</span>) {</span>
+<span id="cb18-231"><a href="#cb18-231" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Warning: Noise estimate problematic&quot;</span>)</span>
+<span id="cb18-232"><a href="#cb18-232" tabindex="-1"></a>  }</span>
+<span id="cb18-233"><a href="#cb18-233" tabindex="-1"></a>  </span>
+<span id="cb18-234"><a href="#cb18-234" tabindex="-1"></a>  s0 <span class="ot">&lt;-</span> <span class="fu">sum</span>(zeros <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-235"><a href="#cb18-235" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="st">&quot;noise_sd&quot;</span> <span class="ot">=</span> sd_hat1, <span class="st">&quot;nz&quot;</span> <span class="ot">=</span> s0))</span>
+<span id="cb18-236"><a href="#cb18-236" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="实例" class="section level3">
+<h3>5. <strong>实例</strong></h3>
+<p>下面是一个高维回归模型的示例，使用了LASSO（最小绝对收缩和选择算子）回归并计算了回归系数的置信区间</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> p), n, p)</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">0</span>, p <span class="sc">-</span> <span class="dv">5</span>))</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta_true <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">SSLASSO</span>(X, y, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## 10% completed
+## 20% completed
+## 30% completed
+## 40% completed
+## 50% completed
+## 60% completed
+## 70% completed
+## 80% completed
+## 90% completed
+## 100% completed</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">print</span>(result<span class="sc">$</span>estimates)</span></code></pre></div>
+<pre><code>##  [1]  1.556291651  1.738711552  1.831202120  1.923312899  1.687464937
+##  [6]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+## [11]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+## [16]  0.000000000  0.000000000  0.141335169  0.000000000  0.000000000
+## [21]  0.000000000  0.000000000  0.000000000  0.086890630  0.000000000
+## [26]  0.038347028  0.000000000  0.000000000 -0.001750754  0.000000000
+## [31]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+## [36]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+## [41]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+## [46]  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(result<span class="sc">$</span>unbiased_estimates)</span></code></pre></div>
+<pre><code>##               [,1]
+##  [1,]  1.691934375
+##  [2,]  1.864027791
+##  [3,]  1.969232543
+##  [4,]  2.052740313
+##  [5,]  1.821126068
+##  [6,] -0.026620958
+##  [7,] -0.047959070
+##  [8,]  0.077252644
+##  [9,] -0.104765362
+## [10,]  0.061529787
+## [11,]  0.045372010
+## [12,]  0.048659457
+## [13,]  0.112766559
+## [14,]  0.054031830
+## [15,]  0.014910499
+## [16,]  0.058425617
+## [17,] -0.025116721
+## [18,]  0.276662918
+## [19,]  0.035433847
+## [20,]  0.015226983
+## [21,]  0.023505784
+## [22,] -0.129340233
+## [23,]  0.068711235
+## [24,]  0.226413931
+## [25,]  0.016459663
+## [26,]  0.172007078
+## [27,]  0.020958065
+## [28,]  0.085165690
+## [29,] -0.140221354
+## [30,] -0.063003086
+## [31,] -0.010456480
+## [32,] -0.021661721
+## [33,] -0.110327568
+## [34,]  0.039170917
+## [35,] -0.057028082
+## [36,] -0.053136507
+## [37,]  0.087775141
+## [38,] -0.067997628
+## [39,] -0.003287814
+## [40,] -0.040163253
+## [41,]  0.090911365
+## [42,] -0.029349830
+## [43,] -0.069070011
+## [44,] -0.058808381
+## [45,]  0.040363635
+## [46,]  0.010002881
+## [47,]  0.051649025
+## [48,] -0.004524831
+## [49,]  0.097734488
+## [50,] -0.004654659</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">print</span>(result<span class="sc">$</span>confidence_intervals)</span></code></pre></div>
+<pre><code>##              [,1]       [,2]
+##  [1,]  1.54437420 1.83949455
+##  [2,]  1.72770766 2.00034792
+##  [3,]  1.81908389 2.11938120
+##  [4,]  1.91195072 2.19352990
+##  [5,]  1.67573190 1.96652024
+##  [6,] -0.17420462 0.12096270
+##  [7,] -0.19536795 0.09944981
+##  [8,] -0.07675093 0.23125622
+##  [9,] -0.25643646 0.04690574
+## [10,] -0.07770836 0.20076794
+## [11,] -0.09801987 0.18876389
+## [12,] -0.09376775 0.19108667
+## [13,] -0.04301922 0.26855234
+## [14,] -0.09269537 0.20075903
+## [15,] -0.13523815 0.16505915
+## [16,] -0.08496626 0.20181750
+## [17,] -0.17003101 0.11979757
+## [18,]  0.12945491 0.42387093
+## [19,] -0.11089317 0.18176086
+## [20,] -0.12855129 0.15900525
+## [21,] -0.12264788 0.16965945
+## [22,] -0.27358379 0.01490333
+## [23,] -0.08440480 0.22182727
+## [24,]  0.07464194 0.37818592
+## [25,] -0.12277849 0.15569781
+## [26,]  0.02661291 0.31740125
+## [27,] -0.12519560 0.16711173
+## [28,] -0.06239449 0.23272587
+## [29,] -0.29084819 0.01040548
+## [30,] -0.20543030 0.07942413
+## [31,] -0.15766449 0.13675153
+## [32,] -0.16827528 0.12495184
+## [33,] -0.26475448 0.04409935
+## [34,] -0.11455240 0.19289424
+## [35,] -0.20796627 0.09391011
+## [36,] -0.20365358 0.09738056
+## [37,] -0.06559857 0.24114885
+## [38,] -0.21558129 0.07958603
+## [39,] -0.15628589 0.14971026
+## [40,] -0.19319784 0.11287133
+## [41,] -0.05358595 0.23540868
+## [42,] -0.17341658 0.11471692
+## [43,] -0.20539014 0.06725012
+## [44,] -0.20258665 0.08496989
+## [45,] -0.10387993 0.18460720
+## [46,] -0.14440878 0.16441454
+## [47,] -0.09893387 0.20223192
+## [48,] -0.14859158 0.13954192
+## [49,] -0.04887907 0.24434805
+## [50,] -0.15514641 0.14583709</code></pre>
+</div>
+</div>
+<div id="二.理论背景介绍隐马尔科夫模型hmm参数估计" class="section level2">
+<h2>二.理论背景介绍：隐马尔科夫模型（HMM）参数估计</h2>
+<p>隐马尔科夫模型（Hidden Markov Model,
+HMM）是一种用于建模时间序列数据的概率模型，广泛应用于语音识别、基因组学、行为建模等领域。HMM
+的核心思想是：观测数据由一个隐藏状态的马尔科夫链生成，每个隐藏状态通过特定的概率分布生成观测数据。这种模型可以捕捉数据的序列依赖性和复杂的生成过程。</p>
+<div id="hmm-的基本组成" class="section level3">
+<h3>1.HMM 的基本组成</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>隐藏状态（Hidden States）：</strong><br />
+系统在任意时间点处于一个隐藏状态，这些状态不可直接观测，只能通过观测数据推测。</p></li>
+<li><p><strong>观测序列（Observations）：</strong><br />
+每个时间点的观测值由隐藏状态生成。观测值的分布形式由模型假定（如正态分布或泊松分布）。</p></li>
+<li><p><strong>模型参数：</strong><br />
+</p></li>
+</ol>
+<ul>
+<li>状态转移概率矩阵 <span class="math inline">\(A\)</span>：描述隐藏状态间的转移概率。</li>
+<li>初始状态分布 <span class="math inline">\(\pi\)</span>：描述系统开始时隐藏状态的分布。</li>
+<li>观测分布参数（如均值 <span class="math inline">\(\mu\)</span>
+和标准差 <span class="math inline">\(\sigma\)</span>）：定义隐藏状态生成观测值的分布形式。</li>
+</ul>
+</div>
+<div id="hmm-的参数估计" class="section level3">
+<h3>2.HMM 的参数估计</h3>
+<p>为了应用 HMM，需要估计上述参数。参数估计通常通过
+<strong>期望最大化（EM）算法</strong> 实现：</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>E 步（期望步）：</strong><br />
+给定当前参数估计，计算隐藏状态的后验概率（即数据生成每个隐藏状态的可能性）。</p></li>
+<li><p><strong>M 步（最大化步）：</strong><br />
+根据隐藏状态的后验概率更新参数，以最大化模型的对数似然函数。</p></li>
+</ol>
+<p>EM 算法反复迭代，直到收敛到最优解。</p>
+</div>
+<div id="本代码的实现功能" class="section level3">
+<h3>3.本代码的实现功能</h3>
+<p>代码基于 <code>Rcpp</code> 实现了使用 EM 算法对 HMM
+参数的估计，支持泊松分布和正态分布两种观测分布。其功能包括：</p>
+<ol style="list-style-type: decimal">
+<li><p>初始化 HMM
+参数（状态转移矩阵、初始状态分布、观测分布的均值和标准差）。</p></li>
+<li><p>在 EM 算法中：</p></li>
+</ol>
+<ul>
+<li><strong>E 步：</strong> 计算后验概率矩阵 <span class="math inline">\(\gamma\)</span>，表示每个时间点属于某个隐藏状态的概率。</li>
+<li><strong>M 步：</strong> 更新状态转移矩阵 <span class="math inline">\(A\)</span>、初始状态分布 <span class="math inline">\(\pi\)</span>、观测分布的均值 <span class="math inline">\(\mu\)</span>，以及标准差 <span class="math inline">\(\sigma\)</span>。</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>输出优化后的参数结果，包括 <span class="math inline">\(A\)</span>、<span class="math inline">\(\pi\)</span>、<span class="math inline">\(\mu\)</span> 和 <span class="math inline">\(\sigma\)</span>（仅对正态分布）。</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>List hmm_em<span class="op">(</span>NumericMatrix observations<span class="op">,</span> <span class="dt">int</span> n_states<span class="op">,</span> <span class="bu">std::</span>string <span class="dt">dist_type</span> <span class="op">=</span> <span class="st">&quot;normal&quot;</span><span class="op">,</span> <span class="dt">int</span> max_iter <span class="op">=</span> <span class="dv">100</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>   <span class="dt">int</span> n_obs <span class="op">=</span> observations<span class="op">.</span>nrow<span class="op">();</span></span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>   <span class="dt">int</span> n_features <span class="op">=</span> observations<span class="op">.</span>ncol<span class="op">();</span></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a>   </span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a>   <span class="co">// Initialize parameters</span></span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>   NumericMatrix A<span class="op">(</span>n_states<span class="op">,</span> n_states<span class="op">);</span> <span class="co">// Transition matrix</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a>   NumericVector pi<span class="op">(</span>n_states<span class="op">,</span> <span class="fl">1.0</span> <span class="op">/</span> n_states<span class="op">);</span> <span class="co">// Initial state probabilities</span></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a>   NumericMatrix mu<span class="op">(</span>n_states<span class="op">,</span> n_features<span class="op">);</span> <span class="co">// Mean matrix</span></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a>   NumericMatrix sigma<span class="op">(</span>n_states<span class="op">,</span> n_features<span class="op">);</span> <span class="co">// Standard deviation matrix (for normal distribution)</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a>   </span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a>   <span class="co">// Uniform initialization for A</span></span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>   <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a>       A<span class="op">(</span>i<span class="op">,</span> j<span class="op">)</span> <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> n_states<span class="op">;</span></span>
+<span id="cb27-21"><a href="#cb27-21" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a>   </span>
+<span id="cb27-24"><a href="#cb27-24" tabindex="-1"></a>   <span class="co">// Random initialization for means and standard deviations</span></span>
+<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a>   <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> n_features<span class="op">;</span> <span class="op">++</span>d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a>       mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> R<span class="op">::</span>runif<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb27-28"><a href="#cb27-28" tabindex="-1"></a>       sigma<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> R<span class="op">::</span>runif<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb27-29"><a href="#cb27-29" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-30"><a href="#cb27-30" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb27-31"><a href="#cb27-31" tabindex="-1"></a>   </span>
+<span id="cb27-32"><a href="#cb27-32" tabindex="-1"></a>   <span class="co">// Variables for the E-step</span></span>
+<span id="cb27-33"><a href="#cb27-33" tabindex="-1"></a>   NumericMatrix gamma<span class="op">(</span>n_obs<span class="op">,</span> n_states<span class="op">);</span> <span class="co">// Posterior probability matrix</span></span>
+<span id="cb27-34"><a href="#cb27-34" tabindex="-1"></a>   </span>
+<span id="cb27-35"><a href="#cb27-35" tabindex="-1"></a>   <span class="co">// EM iteration</span></span>
+<span id="cb27-36"><a href="#cb27-36" tabindex="-1"></a>   <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> iter <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> iter <span class="op">&lt;</span> max_iter<span class="op">;</span> <span class="op">++</span>iter<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-37"><a href="#cb27-37" tabindex="-1"></a>     <span class="co">// --- E-step ---</span></span>
+<span id="cb27-38"><a href="#cb27-38" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> n_obs<span class="op">;</span> <span class="op">++</span>t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-39"><a href="#cb27-39" tabindex="-1"></a>       <span class="dt">double</span> row_sum <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb27-40"><a href="#cb27-40" tabindex="-1"></a>       <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-41"><a href="#cb27-41" tabindex="-1"></a>         <span class="dt">double</span> likelihood <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb27-42"><a href="#cb27-42" tabindex="-1"></a>         <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> n_features<span class="op">;</span> <span class="op">++</span>d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-43"><a href="#cb27-43" tabindex="-1"></a>           <span class="cf">if</span> <span class="op">(</span><span class="dt">dist_type</span> <span class="op">==</span> <span class="st">&quot;poisson&quot;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-44"><a href="#cb27-44" tabindex="-1"></a>             likelihood <span class="op">*=</span> R<span class="op">::</span>dpois<span class="op">(</span>observations<span class="op">(</span>t<span class="op">,</span> d<span class="op">),</span> mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">),</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="cb27-45"><a href="#cb27-45" tabindex="-1"></a>           <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span><span class="dt">dist_type</span> <span class="op">==</span> <span class="st">&quot;normal&quot;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-46"><a href="#cb27-46" tabindex="-1"></a>             likelihood <span class="op">*=</span> R<span class="op">::</span>dnorm<span class="op">(</span>observations<span class="op">(</span>t<span class="op">,</span> d<span class="op">),</span> mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">),</span> sigma<span class="op">(</span>k<span class="op">,</span> d<span class="op">),</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="cb27-47"><a href="#cb27-47" tabindex="-1"></a>           <span class="op">}</span></span>
+<span id="cb27-48"><a href="#cb27-48" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-49"><a href="#cb27-49" tabindex="-1"></a>         <span class="co">// Prevent multiplication overflow or underflow</span></span>
+<span id="cb27-50"><a href="#cb27-50" tabindex="-1"></a>         <span class="cf">if</span> <span class="op">(</span>likelihood <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-51"><a href="#cb27-51" tabindex="-1"></a>           gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">=</span> pi<span class="op">[</span>k<span class="op">]</span> <span class="op">*</span> likelihood<span class="op">;</span></span>
+<span id="cb27-52"><a href="#cb27-52" tabindex="-1"></a>         <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-53"><a href="#cb27-53" tabindex="-1"></a>           gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb27-54"><a href="#cb27-54" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-55"><a href="#cb27-55" tabindex="-1"></a>         row_sum <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">);</span></span>
+<span id="cb27-56"><a href="#cb27-56" tabindex="-1"></a>       <span class="op">}</span></span>
+<span id="cb27-57"><a href="#cb27-57" tabindex="-1"></a>       <span class="co">// Normalize</span></span>
+<span id="cb27-58"><a href="#cb27-58" tabindex="-1"></a>       <span class="cf">if</span> <span class="op">(</span>row_sum <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-59"><a href="#cb27-59" tabindex="-1"></a>         <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-60"><a href="#cb27-60" tabindex="-1"></a>           gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">/=</span> row_sum<span class="op">;</span></span>
+<span id="cb27-61"><a href="#cb27-61" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-62"><a href="#cb27-62" tabindex="-1"></a>       <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-63"><a href="#cb27-63" tabindex="-1"></a>         <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-64"><a href="#cb27-64" tabindex="-1"></a>           gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> n_states<span class="op">;</span>  <span class="co">// Avoid division by zero</span></span>
+<span id="cb27-65"><a href="#cb27-65" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-66"><a href="#cb27-66" tabindex="-1"></a>       <span class="op">}</span></span>
+<span id="cb27-67"><a href="#cb27-67" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-68"><a href="#cb27-68" tabindex="-1"></a>     </span>
+<span id="cb27-69"><a href="#cb27-69" tabindex="-1"></a>     <span class="co">// --- M-step ---</span></span>
+<span id="cb27-70"><a href="#cb27-70" tabindex="-1"></a>     <span class="co">// Update initial state probabilities</span></span>
+<span id="cb27-71"><a href="#cb27-71" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-72"><a href="#cb27-72" tabindex="-1"></a>       pi<span class="op">[</span>k<span class="op">]</span> <span class="op">=</span> gamma<span class="op">(</span><span class="dv">0</span><span class="op">,</span> k<span class="op">);</span></span>
+<span id="cb27-73"><a href="#cb27-73" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-74"><a href="#cb27-74" tabindex="-1"></a>     </span>
+<span id="cb27-75"><a href="#cb27-75" tabindex="-1"></a>     <span class="co">// Update transition matrix</span></span>
+<span id="cb27-76"><a href="#cb27-76" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-77"><a href="#cb27-77" tabindex="-1"></a>       <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-78"><a href="#cb27-78" tabindex="-1"></a>         <span class="dt">double</span> num <span class="op">=</span> <span class="fl">0.0</span><span class="op">,</span> denom <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb27-79"><a href="#cb27-79" tabindex="-1"></a>         <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> n_obs <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-80"><a href="#cb27-80" tabindex="-1"></a>           num <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> i<span class="op">)</span> <span class="op">*</span> gamma<span class="op">(</span>t <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> j<span class="op">);</span></span>
+<span id="cb27-81"><a href="#cb27-81" tabindex="-1"></a>           denom <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> i<span class="op">);</span></span>
+<span id="cb27-82"><a href="#cb27-82" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-83"><a href="#cb27-83" tabindex="-1"></a>         <span class="cf">if</span> <span class="op">(</span>denom <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-84"><a href="#cb27-84" tabindex="-1"></a>           A<span class="op">(</span>i<span class="op">,</span> j<span class="op">)</span> <span class="op">=</span> num <span class="op">/</span> denom<span class="op">;</span></span>
+<span id="cb27-85"><a href="#cb27-85" tabindex="-1"></a>         <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-86"><a href="#cb27-86" tabindex="-1"></a>           A<span class="op">(</span>i<span class="op">,</span> j<span class="op">)</span> <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> n_states<span class="op">;</span>  <span class="co">// Avoid division by zero</span></span>
+<span id="cb27-87"><a href="#cb27-87" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-88"><a href="#cb27-88" tabindex="-1"></a>       <span class="op">}</span></span>
+<span id="cb27-89"><a href="#cb27-89" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-90"><a href="#cb27-90" tabindex="-1"></a>     </span>
+<span id="cb27-91"><a href="#cb27-91" tabindex="-1"></a>     <span class="co">// Update means and standard deviations</span></span>
+<span id="cb27-92"><a href="#cb27-92" tabindex="-1"></a>     <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n_states<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-93"><a href="#cb27-93" tabindex="-1"></a>       <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> d <span class="op">&lt;</span> n_features<span class="op">;</span> <span class="op">++</span>d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-94"><a href="#cb27-94" tabindex="-1"></a>         <span class="dt">double</span> num_mu <span class="op">=</span> <span class="fl">0.0</span><span class="op">,</span> denom_mu <span class="op">=</span> <span class="fl">0.0</span><span class="op">,</span> num_sigma <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb27-95"><a href="#cb27-95" tabindex="-1"></a>         <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> n_obs<span class="op">;</span> <span class="op">++</span>t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-96"><a href="#cb27-96" tabindex="-1"></a>           num_mu <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">*</span> observations<span class="op">(</span>t<span class="op">,</span> d<span class="op">);</span></span>
+<span id="cb27-97"><a href="#cb27-97" tabindex="-1"></a>           denom_mu <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">);</span></span>
+<span id="cb27-98"><a href="#cb27-98" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-99"><a href="#cb27-99" tabindex="-1"></a>         <span class="cf">if</span> <span class="op">(</span>denom_mu <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-100"><a href="#cb27-100" tabindex="-1"></a>           mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> num_mu <span class="op">/</span> denom_mu<span class="op">;</span></span>
+<span id="cb27-101"><a href="#cb27-101" tabindex="-1"></a>         <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-102"><a href="#cb27-102" tabindex="-1"></a>           mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> R<span class="op">::</span>runif<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">);</span> <span class="co">// Default if no observation</span></span>
+<span id="cb27-103"><a href="#cb27-103" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-104"><a href="#cb27-104" tabindex="-1"></a>         </span>
+<span id="cb27-105"><a href="#cb27-105" tabindex="-1"></a>         <span class="cf">if</span> <span class="op">(</span><span class="dt">dist_type</span> <span class="op">==</span> <span class="st">&quot;normal&quot;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-106"><a href="#cb27-106" tabindex="-1"></a>           <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> n_obs<span class="op">;</span> <span class="op">++</span>t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-107"><a href="#cb27-107" tabindex="-1"></a>             num_sigma <span class="op">+=</span> gamma<span class="op">(</span>t<span class="op">,</span> k<span class="op">)</span> <span class="op">*</span> <span class="bu">std::</span>pow<span class="op">(</span>observations<span class="op">(</span>t<span class="op">,</span> d<span class="op">)</span> <span class="op">-</span> mu<span class="op">(</span>k<span class="op">,</span> d<span class="op">),</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb27-108"><a href="#cb27-108" tabindex="-1"></a>           <span class="op">}</span></span>
+<span id="cb27-109"><a href="#cb27-109" tabindex="-1"></a>           <span class="cf">if</span> <span class="op">(</span>denom_mu <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-110"><a href="#cb27-110" tabindex="-1"></a>             sigma<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> <span class="bu">std::</span>sqrt<span class="op">(</span>num_sigma <span class="op">/</span> denom_mu<span class="op">);</span></span>
+<span id="cb27-111"><a href="#cb27-111" tabindex="-1"></a>           <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb27-112"><a href="#cb27-112" tabindex="-1"></a>             sigma<span class="op">(</span>k<span class="op">,</span> d<span class="op">)</span> <span class="op">=</span> R<span class="op">::</span>runif<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">5</span><span class="op">);</span> <span class="co">// Default if no observation</span></span>
+<span id="cb27-113"><a href="#cb27-113" tabindex="-1"></a>           <span class="op">}</span></span>
+<span id="cb27-114"><a href="#cb27-114" tabindex="-1"></a>         <span class="op">}</span></span>
+<span id="cb27-115"><a href="#cb27-115" tabindex="-1"></a>       <span class="op">}</span></span>
+<span id="cb27-116"><a href="#cb27-116" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb27-117"><a href="#cb27-117" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb27-118"><a href="#cb27-118" tabindex="-1"></a>   </span>
+<span id="cb27-119"><a href="#cb27-119" tabindex="-1"></a>   <span class="cf">return</span> List<span class="op">::</span>create<span class="op">(</span></span>
+<span id="cb27-120"><a href="#cb27-120" tabindex="-1"></a>     Named<span class="op">(</span><span class="st">&quot;A&quot;</span><span class="op">)</span> <span class="op">=</span> A<span class="op">,</span></span>
+<span id="cb27-121"><a href="#cb27-121" tabindex="-1"></a>     Named<span class="op">(</span><span class="st">&quot;pi&quot;</span><span class="op">)</span> <span class="op">=</span> pi<span class="op">,</span></span>
+<span id="cb27-122"><a href="#cb27-122" tabindex="-1"></a>     Named<span class="op">(</span><span class="st">&quot;mu&quot;</span><span class="op">)</span> <span class="op">=</span> mu<span class="op">,</span></span>
+<span id="cb27-123"><a href="#cb27-123" tabindex="-1"></a>     Named<span class="op">(</span><span class="st">&quot;sigma&quot;</span><span class="op">)</span> <span class="op">=</span> sigma</span>
+<span id="cb27-124"><a href="#cb27-124" tabindex="-1"></a>   <span class="op">);</span></span>
+<span id="cb27-125"><a href="#cb27-125" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># 创建模拟数据</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>n_features <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>observations <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n_obs <span class="sc">*</span> n_features), <span class="at">ncol =</span> n_features)</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="co"># 使用 HMM EM 算法进行训练</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>n_states <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">hmm_em</span>(observations, n_states, <span class="at">dist_type =</span> <span class="st">&quot;normal&quot;</span>, <span class="at">max_iter =</span> <span class="dv">50</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="co"># 查看结果</span></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a>result<span class="sc">$</span>A  <span class="co"># 转移矩阵</span></span></code></pre></div>
+<pre><code>##             [,1]        [,2]      [,3]
+## [1,] 0.000000000 0.000000000 1.0000000
+## [2,] 0.000000000 0.000000000 1.0000000
+## [3,] 0.003389831 0.003389831 0.9932203</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>result<span class="sc">$</span>pi  <span class="co"># 初始状态概率</span></span></code></pre></div>
+<pre><code>## [1] 0 0 1</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>result<span class="sc">$</span>mu  <span class="co"># 均值矩阵</span></span></code></pre></div>
+<pre><code>##             [,1]       [,2]
+## [1,] -1.01857538  3.2410399
+## [2,] -1.01857538  3.2410399
+## [3,]  0.09784874 -0.1300205</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>result<span class="sc">$</span>sigma  <span class="co"># 标准差矩阵</span></span></code></pre></div>
+<pre><code>##           [,1]      [,2]
+## [1,] 0.0000000 0.0000000
+## [2,] 0.0000000 0.0000000
+## [3,] 0.9067124 0.9252918</code></pre>
+</div>
+<div id="应用场景" class="section level3">
+<h3>4.应用场景</h3>
+<p>适用于以下情况： - 时间序列数据中存在潜在的隐藏状态。 -
+观测分布可通过泊松分布或正态分布近似。 - 需要通过数据驱动方式估计 HMM
+的模型参数。</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

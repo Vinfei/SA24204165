@@ -5,8 +5,8 @@ Version: 1.0
 Date: 2024-12-09
 Author: WuPengfeiSA24204165
 Maintainer: WuPengfei <wpfpg68@mail.ustc.edu.cn>
-Description: One paragraph description of what the package does as one
-        or more full sentences.
+Description: This R package provides tools for high-dimensional regression, statistical inference, 
+             and efficient parameter estimation for Hidden Markov Models (HMMs).
 License: GPL (>= 2)
 Imports: 
     boot,
