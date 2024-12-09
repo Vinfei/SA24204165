@@ -26,7 +26,7 @@ A list containing:
 Solves a single row of a covariance matrix for constrained optimization in high-dimensional regression.
 }
 \examples{
-\dontrun{
+{
 cov_matrix <- matrix(c(4, 2, 2, 3), nrow = 2)
 result <- solve_one_row(cov_matrix, 1, 0.1)
 print(result)

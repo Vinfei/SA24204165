@@ -40,7 +40,7 @@ A list containing:
 Implements a high-dimensional regression procedure using LASSO, computes confidence intervals, and provides unbiased estimates.
 }
 \examples{
-\dontrun{
+{
 set.seed(123)
 n <- 100
 p <- 50

@@ -15,7 +15,7 @@ using namespace Rcpp;
  //'   - `mu`: A NumericMatrix representing the mean of the observation distributions.
  //'   - `sigma`: A NumericMatrix representing the standard deviation of the observation distributions (only for normal distribution).
  //' @examples
- //' \\dontrun{
+ //' {
  //' observations <- matrix(runif(100), nrow = 10, ncol = 10)
  //' result <- hmm_em(observations, n_states = 3, dist_type = "normal", max_iter = 50)
  //' print(result)

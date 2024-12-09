@@ -33,7 +33,7 @@ A numeric matrix representing the sparse inverse of the input matrix.
 Computes the sparse inverse of a covariance matrix using row-wise constrained optimization.
 }
 \examples{
-\dontrun{
+{
 cov_matrix <- matrix(c(4, 2, 2, 3), nrow = 2)
 result <- compute_inverse(cov_matrix, sample_size = 100)
 print(result)

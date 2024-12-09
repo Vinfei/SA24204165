@@ -28,7 +28,7 @@
 #'   \item{confidence_intervals}{Matrix of confidence intervals for the coefficients.}
 #'   \item{noise_sd}{Estimated standard deviation of noise.}
 #' @examples
-#' \dontrun{
+#' {
 #' set.seed(123)
 #' n <- 100
 #' p <- 50
@@ -83,7 +83,7 @@ SSLASSO <- function(X, y, alpha = 0.05, lambda = NULL, max_iter = 50, tol = 1e-2
 #' @param threshold Numeric; the threshold value.
 #' @return A numeric value after applying the soft-threshold.
 #' @examples
-#' \dontrun{
+#' {
 #' result <- soft_threshold(3.5, 2)
 #' print(result)
 #' }
@@ -110,7 +110,7 @@ soft_threshold <- function(value, threshold) {
 #'   \item{solution}{The solution vector for the row.}
 #'   \item{iterations}{Number of iterations performed.}
 #' @examples
-#' \dontrun{
+#' {
 #' cov_matrix <- matrix(c(4, 2, 2, 3), nrow = 2)
 #' result <- solve_one_row(cov_matrix, 1, 0.1)
 #' print(result)
@@ -161,7 +161,7 @@ solve_one_row <- function(cov_matrix, row_idx, constraint, max_iter = 50, tol = 
 #' @param verbose Logical; if TRUE, displays progress (default: TRUE).
 #' @return A numeric matrix representing the sparse inverse of the input matrix.
 #' @examples
-#' \dontrun{
+#' {
 #' cov_matrix <- matrix(c(4, 2, 2, 3), nrow = 2)
 #' result <- compute_inverse(cov_matrix, sample_size = 100)
 #' print(result)
@@ -196,7 +196,7 @@ compute_inverse <- function(cov_matrix, sample_size, constraint = NULL, max_iter
 #' @param intercept Logical; whether to include an intercept in the model (default: TRUE).
 #' @return A numeric vector of LASSO regression coefficients.
 #' @examples
-#' \dontrun{
+#' {
 #' X <- matrix(rnorm(100 * 10), nrow = 100)
 #' y <- rnorm(100)
 #' result <- Lasso(X, y)
@@ -230,14 +230,6 @@ Lasso <- function(X, y, lambda = NULL, intercept = TRUE) {
 #' @return A list containing:
 #'   \item{noise_sd}{Estimated noise standard deviation.}
 #'   \item{nz}{Number of non-zero coefficients or significant coefficients.}
-#' @examples
-#' \dontrun{
-#' yh <- rnorm(100)
-#' A <- matrix(rnorm(10000), nrow = 100, ncol = 100)
-#' result <- Noise(yh, A, 100)
-#' print(result$noise_sd)
-#' print(result$nz)
-#' }
 #' @name Noise
 #' @export
 Noise <- function(yh, A, n) {

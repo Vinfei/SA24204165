@@ -21,12 +21,3 @@ A list containing:
 \description{
 Estimates the noise standard deviation using the residuals.
 }
-\examples{
-\dontrun{
-yh <- rnorm(100)
-A <- matrix(rnorm(10000), nrow = 100, ncol = 100)
-result <- Noise(yh, A, 100)
-print(result$noise_sd)
-print(result$nz)
-}
-}

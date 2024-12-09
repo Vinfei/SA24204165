@@ -22,7 +22,7 @@ A numeric vector of LASSO regression coefficients.
 Fits a LASSO regression model using either glmnet or square-root Lasso.
 }
 \examples{
-\dontrun{
+{
 X <- matrix(rnorm(100 * 10), nrow = 100)
 y <- rnorm(100)
 result <- Lasso(X, y)

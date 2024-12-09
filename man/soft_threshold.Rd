@@ -18,7 +18,7 @@ A numeric value after applying the soft-threshold.
 Applies a soft-thresholding operation to a given value.
 }
 \examples{
-\dontrun{
+{
 result <- soft_threshold(3.5, 2)
 print(result)
 }

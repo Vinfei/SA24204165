@@ -3,6 +3,7 @@
 
 #' @title Hidden Markov Model Parameter Estimation
 #' @name name
+
 NULL
 
 hmm_em <- function(observations, n_states, dist_type = "normal", max_iter = 100L) {
